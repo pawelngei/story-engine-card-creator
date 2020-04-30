@@ -18,6 +18,7 @@ function App() {
             top='top'
             left='left'
             right='right'
+            symbol='abcd'
           />
         </SizeWrapper>
       </header>

@@ -57,11 +57,28 @@ const RightContainer = styled(TextContainer)`
   transform-origin: bottom right;
 `
 
+const SymbolContainer = styled.div`
+  position: absolute;
+  height: 20%;
+  width: 20%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`
+
+const StyledIcon = styled.svg`
+  width: 100%;
+  height: 100%;
+`
+
+const AnchorIcon = StyledIcon.withComponent(AnchorSvg)
+
 export const Card = ({
   bottom,
   left,
   top,
-  right
+  right,
+  symbol
 }: CardProps) => {
   return (
     <CardContainer>
@@ -69,6 +86,11 @@ export const Card = ({
       <LeftContainer>{left}</LeftContainer>
       <TopContainer>{top}</TopContainer>
       <RightContainer>{right}</RightContainer>
+      {symbol && (
+        <SymbolContainer>
+          <AnchorIcon />
+        </SymbolContainer>
+      )}
     </CardContainer>
   )
 }
