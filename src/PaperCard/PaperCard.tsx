@@ -4,6 +4,7 @@ import { Card, CardType } from '../Card/Card'
 
 type PaperCardProps = {
   cards: CardType[]
+  setActiveCard: (index: number) => void
 }
 
 const PaperContainer = styled.div`
@@ -24,18 +25,22 @@ const PrintableArea = styled.div`
   width: 90%;
   height: 90%;
   display: flex;
+  flex-wrap: wrap;
 `
 
 const CardWrapper = styled.div`
   width: 33.33%;
 `
 
-export const PaperCard = ({ cards }: PaperCardProps) => {
+export const PaperCard = ({ cards, setActiveCard }: PaperCardProps) => {
   return (
     <PaperContainer>
       <PrintableArea>
         {cards.map((card, index) => (
-          <CardWrapper key={`cardwrapper-${index}`}>
+          <CardWrapper
+            key={`cardwrapper-${index}`}
+            onClick={() => setActiveCard(index)}
+          >
             <Card {...card} />
           </CardWrapper>
         ))}

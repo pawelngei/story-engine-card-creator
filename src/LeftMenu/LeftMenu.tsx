@@ -5,6 +5,7 @@ import { Card, CardType } from '../Card/Card'
 type LeftMenuProps = {
   card: CardType,
   setCard: (card: CardType) => void
+  createNewCard: () => void
 }
 
 const LeftMenuContainer = styled.div`
@@ -48,8 +49,10 @@ const cardTypes = [
 
 export const LeftMenu = ({
   card,
-  setCard
+  setCard,
+  createNewCard
 }: LeftMenuProps) => {
+  console.log('card', card)
   const { top, bottom, left, right, type } = card
   const setCardValue = (key: string, value: string) => setCard({
     ...card,
@@ -58,6 +61,9 @@ export const LeftMenu = ({
   return (
     <LeftMenuContainer>
       <Inner>
+        <button onClick={() => createNewCard()}>
+          Create new card
+        </button>
         <CardContainer>
           <Card 
             bottom={bottom}

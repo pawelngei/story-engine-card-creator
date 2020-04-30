@@ -23,6 +23,12 @@ const PaperCardScrollInner = styled.div`
   }
 `
 
+const emptyCard = {
+  top: '',
+  bottom: '',
+  type: 'agent'
+}
+
 const sampleCard = {
   top: 'topText',
   bottom: 'bottomText',
@@ -32,19 +38,28 @@ const sampleCard = {
 const App = () => {
   const [cards, setCards] = useState<CardType[]>([sampleCard])
   const [activeCardIdx, setActiveCardIdx] = useState(0)
-  const card = cards[activeCardIdx]
-  const setCard = (card: CardType) => {
-    setCards([card]) //TODO
+  const setCard = (changedCard: CardType) => {
+    setCards([
+      ...cards.slice(0, activeCardIdx),
+      changedCard,
+      ...cards.slice(activeCardIdx + 1)
+    ])
   }
+  const createNewCard = () => {
+    setActiveCardIdx(cards.length)
+    setCards([...cards, emptyCard])
+  }
+  const card = cards[activeCardIdx]
   return (
     <AppContainer>
       <LeftMenu
         card={card}
         setCard={setCard}
+        createNewCard={createNewCard}
       />
       <PaperCardScrollContainer>
         <PaperCardScrollInner>
-          <PaperCard cards={cards} />
+          <PaperCard cards={cards} setActiveCard={setActiveCardIdx}/>
         </PaperCardScrollInner>
       </PaperCardScrollContainer>
     </AppContainer>
