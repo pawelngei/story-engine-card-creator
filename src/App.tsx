@@ -30,12 +30,21 @@ const sampleCard = {
 }
 
 const App = () => {
+  const [cards, setCards] = useState<CardType[]>([sampleCard])
+  const [activeCardIdx, setActiveCardIdx] = useState(0)
+  const card = cards[activeCardIdx]
+  const setCard = (card: CardType) => {
+    setCards([card]) //TODO
+  }
   return (
     <AppContainer>
-      <LeftMenu />
+      <LeftMenu
+        card={card}
+        setCard={setCard}
+      />
       <PaperCardScrollContainer>
         <PaperCardScrollInner>
-          <PaperCard />
+          <PaperCard cards={cards} />
         </PaperCardScrollInner>
       </PaperCardScrollContainer>
     </AppContainer>

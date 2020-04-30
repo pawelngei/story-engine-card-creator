@@ -1,6 +1,11 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Card } from '../Card/Card'
+import { Card, CardType } from '../Card/Card'
+
+type LeftMenuProps = {
+  card: CardType,
+  setCard: (card: CardType) => void
+}
 
 const LeftMenuContainer = styled.div`
   position: relative;
@@ -41,12 +46,15 @@ const cardTypes = [
   'engine'
 ]
 
-export const LeftMenu = () => {
-  const [bottom, setBottom] = useState('bottom')
-  const [top, setTop] = useState('top')
-  const [left, setLeft] = useState('left')
-  const [right, setRight] = useState('right')
-  const [type, setType] = useState('agent')
+export const LeftMenu = ({
+  card,
+  setCard
+}: LeftMenuProps) => {
+  const { top, bottom, left, right, type } = card
+  const setCardValue = (key: string, value: string) => setCard({
+    ...card,
+    [key]: value
+  })
   return (
     <LeftMenuContainer>
       <Inner>
@@ -62,21 +70,21 @@ export const LeftMenu = () => {
         <InputContainer>
           <StyledInput
             value={bottom}
-            onChange={e => setBottom(e.target.value)}
+            onChange={e => setCardValue('bottom', e.target.value)}
           />
           <StyledInput
             value={top}
-            onChange={e => setTop(e.target.value)}
+            onChange={e => setCardValue('top', e.target.value)}
           />
           <StyledInput
             value={left}
-            onChange={e => setLeft(e.target.value)}
+            onChange={e => setCardValue('left', e.target.value)}
           />
           <StyledInput
             value={right}
-            onChange={e => setRight(e.target.value)}
+            onChange={e => setCardValue('right', e.target.value)}
           />
-          <select onChange={e => setType(e.target.value)}>
+          <select onChange={e => setCardValue('type', e.target.value)}>
             {cardTypes.map((type, i) => (
               <option key={`select-${i}`} value={type}>{type}</option>
             ))}

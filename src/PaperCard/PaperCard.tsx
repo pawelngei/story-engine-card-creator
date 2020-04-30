@@ -1,8 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Card } from '../Card/Card'
+import { Card, CardType } from '../Card/Card'
 
-// 1.4142
+type PaperCardProps = {
+  cards: CardType[]
+}
 
 const PaperContainer = styled.div`
   position: relative;
@@ -28,31 +30,15 @@ const CardWrapper = styled.div`
   width: 33.33%;
 `
 
-export const PaperCard = () => {
+export const PaperCard = ({ cards }: PaperCardProps) => {
   return (
     <PaperContainer>
       <PrintableArea>
-        <CardWrapper>
-          <Card
-            top={'1'}
-            bottom={'2'}
-            type='conflict'
-          />
-        </CardWrapper>
-        <CardWrapper>
-          <Card
-            top={'1'}
-            bottom={'2'}
-            type='conflict'
-          />
-        </CardWrapper>
-        <CardWrapper>
-          <Card
-            top={'1'}
-            bottom={'2'}
-            type='conflict'
-          />
-        </CardWrapper>
+        {cards.map((card, index) => (
+          <CardWrapper key={`cardwrapper-${index}`}>
+            <Card {...card} />
+          </CardWrapper>
+        ))}
       </PrintableArea>
     </PaperContainer>
   )
