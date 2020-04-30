@@ -84,7 +84,7 @@ export const LeftMenu = ({
             value={right}
             onChange={e => setCardValue('right', e.target.value)}
           />
-          <select onChange={e => setCardValue('type', e.target.value)}>
+          <select value={type} onChange={e => setCardValue('type', e.target.value)}>
             {cardTypes.map((type, i) => (
               <option key={`select-${i}`} value={type}>{type}</option>
             ))}
