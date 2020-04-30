@@ -5,6 +5,7 @@ import { Card, CardType } from '../Card/Card'
 type PaperCardProps = {
   cards: CardType[]
   setActiveCard: (index: number) => void
+  backs?: boolean
 }
 
 const PaperContainer = styled.div`
@@ -17,7 +18,7 @@ const PaperContainer = styled.div`
   }
 `
 
-const PrintableArea = styled.div`
+const PrintableArea = styled.div<{ reversed: boolean }>`
   position: absolute;
   border: 1px dotted black;
   top: 5%;
@@ -26,17 +27,30 @@ const PrintableArea = styled.div`
   height: 90%;
   display: flex;
   flex-wrap: wrap;
+  flex-direction: ${({ reversed }) => reversed ? 'row-reverse' : 'row' };
 `
 
 const CardWrapper = styled.div`
   width: 33.33%;
 `
 
-export const PaperCard = ({ cards, setActiveCard }: PaperCardProps) => {
+const makeBack = (type: string) => {
+  const name = type.toUpperCase()
+  return {
+    type,
+    top: name,
+    bottom: name,
+    left: name,
+    right: name
+  }
+}
+
+export const PaperCard = ({ cards, setActiveCard, backs }: PaperCardProps) => {
+  const displayedCards = backs ? cards.map(c => makeBack(c.type)) : cards
   return (
     <PaperContainer>
-      <PrintableArea>
-        {cards.map((card, index) => (
+      <PrintableArea reversed={!!backs}>
+        {displayedCards.map((card, index) => (
           <CardWrapper
             key={`cardwrapper-${index}`}
             onClick={() => setActiveCard(index)}

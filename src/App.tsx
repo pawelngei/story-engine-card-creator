@@ -63,7 +63,10 @@ const App = () => {
       />
       <PaperCardScrollContainer>
         <PaperCardScrollInner>
-          <PaperCard cards={cards} setActiveCard={setActiveCardIdx}/>
+          <PaperCard cards={cards} setActiveCard={setActiveCardIdx} />
+        </PaperCardScrollInner>
+        <PaperCardScrollInner>
+          <PaperCard cards={cards} setActiveCard={setActiveCardIdx} backs />
         </PaperCardScrollInner>
       </PaperCardScrollContainer>
     </AppContainer>
