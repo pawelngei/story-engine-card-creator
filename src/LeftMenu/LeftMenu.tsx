@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Card, CardType } from '../Card/Card'
 
@@ -52,12 +52,25 @@ export const LeftMenu = ({
   setCard,
   createNewCard
 }: LeftMenuProps) => {
-  console.log('card', card)
-  const { top, bottom, left, right, type } = card
-  const setCardValue = (key: string, value: string) => setCard({
-    ...card,
-    [key]: value
-  })
+  const [inputState, setInputState] = useState<CardType>(card)
+  const { top, bottom, left, right, type } = inputState
+  const setCardValue = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const value = event.target.value
+    const key = event.target.name
+    setInputState({
+      ...inputState,
+      [key]: value
+    })
+    setCard({
+      ...card,
+      [key]: value
+    })
+  }
+  useEffect(() => {
+    setInputState(card)
+  }, [card])
   return (
     <LeftMenuContainer>
       <Inner>
@@ -75,22 +88,34 @@ export const LeftMenu = ({
         </CardContainer>
         <InputContainer>
           <StyledInput
+            name='bottom'
+            placeholder='bottom'
             value={bottom}
-            onChange={e => setCardValue('bottom', e.target.value)}
+            onChange={e => setCardValue(e)}
           />
           <StyledInput
+            name='top'
+            placeholder='top'
             value={top}
-            onChange={e => setCardValue('top', e.target.value)}
+            onChange={e => setCardValue(e)}
           />
           <StyledInput
+            name='left'
+            placeholder='left'
             value={left}
-            onChange={e => setCardValue('left', e.target.value)}
+            onChange={e => setCardValue(e)}
           />
           <StyledInput
+            name='right'
+            placeholder='right'
             value={right}
-            onChange={e => setCardValue('right', e.target.value)}
+            onChange={e => setCardValue(e)}
           />
-          <select value={type} onChange={e => setCardValue('type', e.target.value)}>
+          <select
+            name='type'
+            value={type}
+            onChange={e => setCardValue(e)}
+          >
             {cardTypes.map((type, i) => (
               <option key={`select-${i}`} value={type}>{type}</option>
             ))}

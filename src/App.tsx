@@ -26,12 +26,16 @@ const PaperCardScrollInner = styled.div`
 const emptyCard = {
   top: '',
   bottom: '',
+  left: '',
+  right: '',
   type: 'agent'
 }
 
 const sampleCard = {
   top: 'topText',
   bottom: 'bottomText',
+  left: '',
+  right: '',
   type: 'engine'
 }
 
