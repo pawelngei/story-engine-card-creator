@@ -8,19 +8,22 @@ const LeftMenuContainer = styled.div`
   width: 30%;
   border-right: 1px solid black;
   background: gray;
+  @media print {
+    display: none;
+  }
 `
 
 const Inner = styled.div`
   position: relative;
-  display: inline-block;
-  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background: teal;
-  padding-top: 10%;
+  padding: 10%;
 `
 
 const CardContainer = styled.div`
-  display: inline-block;
-  width: 80%;
+  width: 100%;
 `
 
 const InputContainer = styled.div`

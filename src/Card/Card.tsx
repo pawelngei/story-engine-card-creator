@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { StyledComponent } from 'styled-components'
+import styled from 'styled-components'
 import { ReactComponent as AnchorSvg } from './anchor.svg'
 import { ReactComponent as MaskSvg } from './mask.svg'
 import { ReactComponent as PersonSvg } from './person.svg'
@@ -8,9 +8,9 @@ import { ReactComponent as StormSvg } from './storm.svg'
 
 type CardProps = {
   bottom: string
-  left: string
+  left?: string
   top: string
-  right: string
+  right?: string
   type?: string
 }
 
@@ -122,9 +122,9 @@ export const Card = ({
   return (
     <CardContainer>
       <BottomContainer>{bottom}</BottomContainer>
-      <LeftContainer>{left}</LeftContainer>
+      {left && <LeftContainer>{left}</LeftContainer>}
       <TopContainer>{top}</TopContainer>
-      <RightContainer>{right}</RightContainer>
+      {right && <RightContainer>{right}</RightContainer>}
       {symbol && (
         <SymbolContainer title={symbol.alt}>
           {type === 'agent' && <PersonIcon />}
