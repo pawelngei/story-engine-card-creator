@@ -5,7 +5,6 @@ import { Card } from '../Card/Card'
 const LeftMenuContainer = styled.div`
   position: relative;
   height: 100vh;
-  width: 30%;
   border-right: 1px solid black;
   background: gray;
   @media print {

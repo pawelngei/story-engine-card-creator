@@ -9,6 +9,9 @@ const PaperContainer = styled.div`
   width: 100%;
   padding-top: 141.42%;
   border: 1px solid black;
+  @media print {
+    border: none;
+  }
 `
 
 const PrintableArea = styled.div`

@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './App.css'
-import { Card } from './Card/Card'
+import { CardType } from './Card/Card'
 import { PaperCard } from './PaperCard/PaperCard'
 import { LeftMenu } from './LeftMenu/LeftMenu'
 import styled from 'styled-components'
@@ -18,10 +18,18 @@ const PaperCardScrollContainer = styled.div`
 
 const PaperCardScrollInner = styled.div`
   padding: 5%;
+  @media print {
+    padding: 0;
+  }
 `
 
+const sampleCard = {
+  top: 'topText',
+  bottom: 'bottomText',
+  type: 'engine'
+}
 
-function App() {
+const App = () => {
   return (
     <AppContainer>
       <LeftMenu />

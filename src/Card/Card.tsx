@@ -6,12 +6,12 @@ import { ReactComponent as PersonSvg } from './person.svg'
 import { ReactComponent as CogSvg } from './cog.svg'
 import { ReactComponent as StormSvg } from './storm.svg'
 
-type CardProps = {
+export type CardType = {
   bottom: string
   left?: string
   top: string
   right?: string
-  type?: string
+  type: string
 }
 
 type IconTableType = {
@@ -117,7 +117,7 @@ export const Card = ({
   top,
   right,
   type
-}: CardProps) => {
+}: CardType) => {
   const symbol = type && IconTable[type]
   return (
     <CardContainer>
