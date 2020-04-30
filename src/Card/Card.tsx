@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import AnchorSvg from './anchor.svg'
+import { ReactComponent as AnchorSvg } from './anchor.svg'
 
 type CardProps = {
   bottom: string
@@ -11,8 +11,8 @@ type CardProps = {
 }
 
 const CardContainer = styled.div`
-  width: 300px;
-  height: 300px;
+  width: 100%;
+  padding-top: 100%;
   border: 1px solid black;
   background: white;
   color: black;
@@ -26,7 +26,7 @@ const TextContainer = styled.span`
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  height: 3em;
+  height: 20%;
   overflow: hidden;
   line-height: 1em;
   font-family: 'Ubuntu';
@@ -38,7 +38,7 @@ const BottomContainer = styled(TextContainer)`
 `
 
 const LeftContainer = styled(TextContainer)`
-  top: 0;
+  top: 2.5%;
   left: 5%;
   transform: rotate(90deg) translateX(-3em);
   transform-origin: bottom left;
@@ -51,7 +51,7 @@ const TopContainer = styled(TextContainer)`
 `
 
 const RightContainer = styled(TextContainer)`
-  top: 0;
+  top: 2.5%;
   right: 5%;
   transform: rotate(270deg) translateX(3em);
   transform-origin: bottom right;
