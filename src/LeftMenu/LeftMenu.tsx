@@ -36,6 +36,7 @@ export const LeftMenu = () => {
   const [top, setTop] = useState('top')
   const [left, setLeft] = useState('left')
   const [right, setRight] = useState('right')
+  const [type, setType] = useState('agent')
   return (
     <LeftMenuContainer>
       <Inner>
@@ -45,7 +46,7 @@ export const LeftMenu = () => {
             top={top}
             left={left}
             right={right}
-            symbol='abcd'
+            type={type}
           />
         </CardContainer>
         <InputContainer>
@@ -64,6 +65,10 @@ export const LeftMenu = () => {
           <StyledInput
             value={right}
             onChange={e => setRight(e.target.value)}
+          />
+          <StyledInput
+            value={type}
+            onChange={e => setType(e.target.value)}
           />
         </InputContainer>
       </Inner>

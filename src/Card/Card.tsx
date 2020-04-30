@@ -1,13 +1,24 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ReactComponent as AnchorSvg } from './anchor.svg'
+import { ReactComponent as MaskSvg } from './mask.svg'
+import { ReactComponent as PersonSvg } from './person.svg'
+import { ReactComponent as CogSvg } from './cog.svg'
+import { ReactComponent as StormSvg } from './storm.svg'
 
 type CardProps = {
   bottom: string
   left: string
   top: string
   right: string
-  symbol?: string
+  type?: string
+}
+
+type IconTableType = {
+  [id: string]: {
+    alt: string
+    component: React.ReactNode
+  }
 }
 
 const CardContainer = styled.div`
@@ -72,14 +83,49 @@ const StyledIcon = styled.svg`
 `
 
 const AnchorIcon = StyledIcon.withComponent(AnchorSvg)
+const MaskIcon = StyledIcon.withComponent(MaskSvg)
+const PersonIcon = StyledIcon.withComponent(PersonSvg)
+const CogIcon = StyledIcon.withComponent(CogSvg)
+const StormIcon = StyledIcon.withComponent(StormSvg)
+
+const IconTable: IconTableType = {
+  agent: {
+    alt: "Icons made by https://www.flaticon.com/authors/freepik Freepik from https://www.flaticon.com/",
+    component: PersonIcon
+  },
+  anchor: {
+    alt: "Icons made by https://www.flaticon.com/authors/freepik Freepik from https://www.flaticon.com/",
+    component: AnchorIcon
+  },
+  aspect: {
+    alt: "Icons made by https://www.flaticon.com/authors/freepik Freepik from https://www.flaticon.com/",
+    component: MaskIcon
+  },
+  conflict: {
+    alt: "Icons made by https://www.flaticon.com/authors/freepik Freepik from https://www.flaticon.com/",
+    component: StormIcon
+  },
+  engine: {
+    alt: "Icons made by https://www.flaticon.com/authors/freepik Freepik from https://www.flaticon.com/",
+    component: CogIcon
+  },
+}
 
 export const Card = ({
   bottom,
   left,
   top,
   right,
-  symbol
+  type
 }: CardProps) => {
+  // symbols:
+  // agent - person
+  // engine - cog
+  // anchor - anchor
+  // conflict - storm
+  // aspect- dramatic mask
+  const symbol = type && IconTable[type]
+  console.log('symbol', symbol && symbol?.component)
   return (
     <CardContainer>
       <BottomContainer>{bottom}</BottomContainer>
@@ -87,8 +133,8 @@ export const Card = ({
       <TopContainer>{top}</TopContainer>
       <RightContainer>{right}</RightContainer>
       {symbol && (
-        <SymbolContainer>
-          <AnchorIcon />
+        <SymbolContainer title={symbol.alt}>
+          <MaskIcon />
         </SymbolContainer>
       )}
     </CardContainer>
