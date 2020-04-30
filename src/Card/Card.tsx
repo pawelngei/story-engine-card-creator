@@ -38,7 +38,7 @@ const BottomContainer = styled(TextContainer)`
 `
 
 const LeftContainer = styled(TextContainer)`
-  top: 2.5%;
+  top: -2.5%;
   left: 5%;
   transform: rotate(90deg) translateX(-3em);
   transform-origin: bottom left;
@@ -51,7 +51,7 @@ const TopContainer = styled(TextContainer)`
 `
 
 const RightContainer = styled(TextContainer)`
-  top: 2.5%;
+  top: -2.5%;
   right: 5%;
   transform: rotate(270deg) translateX(3em);
   transform-origin: bottom right;
