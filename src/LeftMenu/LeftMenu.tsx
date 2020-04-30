@@ -31,6 +31,14 @@ const StyledInput = styled.input`
   width: 100%;
 `
 
+const cardTypes = [
+  'agent',
+  'anchor',
+  'aspect',
+  'conflict',
+  'engine'
+]
+
 export const LeftMenu = () => {
   const [bottom, setBottom] = useState('bottom')
   const [top, setTop] = useState('top')
@@ -66,10 +74,11 @@ export const LeftMenu = () => {
             value={right}
             onChange={e => setRight(e.target.value)}
           />
-          <StyledInput
-            value={type}
-            onChange={e => setType(e.target.value)}
-          />
+          <select onChange={e => setType(e.target.value)}>
+            {cardTypes.map((type, i) => (
+              <option key={`select-${i}`} value={type}>{type}</option>
+            ))}
+          </select>
         </InputContainer>
       </Inner>
     </LeftMenuContainer>

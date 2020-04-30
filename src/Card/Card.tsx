@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { StyledComponent } from 'styled-components'
 import { ReactComponent as AnchorSvg } from './anchor.svg'
 import { ReactComponent as MaskSvg } from './mask.svg'
 import { ReactComponent as PersonSvg } from './person.svg'
@@ -70,8 +70,8 @@ const RightContainer = styled(TextContainer)`
 
 const SymbolContainer = styled.div`
   position: absolute;
-  height: 20%;
-  width: 20%;
+  height: 30%;
+  width: 30%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -118,14 +118,7 @@ export const Card = ({
   right,
   type
 }: CardProps) => {
-  // symbols:
-  // agent - person
-  // engine - cog
-  // anchor - anchor
-  // conflict - storm
-  // aspect- dramatic mask
   const symbol = type && IconTable[type]
-  console.log('symbol', symbol && symbol?.component)
   return (
     <CardContainer>
       <BottomContainer>{bottom}</BottomContainer>
@@ -134,7 +127,11 @@ export const Card = ({
       <RightContainer>{right}</RightContainer>
       {symbol && (
         <SymbolContainer title={symbol.alt}>
-          <MaskIcon />
+          {type === 'agent' && <PersonIcon />}
+          {type === 'anchor' && <AnchorIcon />}
+          {type === 'aspect' && <MaskIcon />}
+          {type === 'conflict' && <StormIcon />}
+          {type === 'engine' && <CogIcon />}
         </SymbolContainer>
       )}
     </CardContainer>
