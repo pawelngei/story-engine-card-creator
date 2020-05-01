@@ -47,6 +47,13 @@ const StyledInput = styled.input`
   width: 100%;
 `
 
+const PageActionsContainer = styled.div`
+  margin-top: 4em;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`
+
 const cardTypes = [
   'agent',
   'anchor',
@@ -127,6 +134,9 @@ export const LeftMenu = ({
             ))}
           </select>
         </InputContainer>
+        <PageActionsContainer>
+          <button onClick={() => window.print()}>Print Cards</button>
+        </PageActionsContainer>
       </Inner>
     </LeftMenuContainer>
   )
