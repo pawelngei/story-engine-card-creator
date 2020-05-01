@@ -83,6 +83,10 @@ const App = () => {
       }
     })
   }
+  const clearCards = () => {
+    setCards([sampleCard])
+    setActiveCardIdx(0)
+  }
   const card = cards[activeCardIdx]
   return (
     <AppContainer>
@@ -93,6 +97,7 @@ const App = () => {
         deleteCard={deleteCard}
         exportCards={exportCards}
         importCards={importCards}
+        clearCards={clearCards}
       />
       <PaperCardScrollContainer>
         <PaperCardScrollInner>

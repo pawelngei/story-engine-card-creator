@@ -9,6 +9,7 @@ type LeftMenuProps = {
   deleteCard: () => void
   exportCards: () => void
   importCards: (e: React.ChangeEvent<HTMLInputElement>) => void
+  clearCards: () => void
 }
 
 const LeftMenuContainer = styled.div`
@@ -49,11 +50,17 @@ const StyledInput = styled.input`
   width: 100%;
 `
 
-const PageActionsContainer = styled.div`
-  margin-top: 4em;
+const PageActionsBar = styled.div`
+  margin-bottom: 2em;
   width: 100%;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+`
+
+const ImportFileContainer = styled.div`
+  padding-top: 1em;
+  width: 100%;
 `
 
 const cardTypes = [
@@ -70,7 +77,8 @@ export const LeftMenu = ({
   createNewCard,
   deleteCard,
   exportCards,
-  importCards
+  importCards,
+  clearCards
 }: LeftMenuProps) => {
   const { top, bottom, left, right, type } = card
   const setCardValue = (
@@ -86,6 +94,15 @@ export const LeftMenu = ({
   return (
     <LeftMenuContainer>
       <Inner>
+        <PageActionsBar>
+          <button onClick={() => clearCards()}>Clear Cards</button>
+          <button onClick={() => window.print()}>Print Cards</button>
+          <button onClick={() => exportCards()}>Export Cards</button>
+          <ImportFileContainer>
+            Import:
+            <input type="file" name="file" onChange={e => importCards(e)}/>
+          </ImportFileContainer>
+        </PageActionsBar>
         <CardActionsBar>
           <button onClick={() => createNewCard()}>
             Create new card
@@ -138,11 +155,6 @@ export const LeftMenu = ({
             ))}
           </select>
         </InputContainer>
-        <PageActionsContainer>
-          <button onClick={() => window.print()}>Print Cards</button>
-          <button onClick={() => exportCards()}>Export Cards</button>
-          Import: <input type="file" name="file" onChange={e => importCards(e)}/>
-        </PageActionsContainer>
       </Inner>
     </LeftMenuContainer>
   )
