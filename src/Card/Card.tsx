@@ -31,7 +31,7 @@ const CardContainer = styled.div`
   position: relative;
 `
 
-const TextContainer = styled.span`
+const TextContainer = styled.div`
   position: absolute;
   text-align: center;
   width: 100%;
@@ -67,6 +67,11 @@ const RightContainer = styled(TextContainer)`
   right: 5%;
   transform: rotate(270deg) translateX(3em);
   transform-origin: bottom right;
+`
+
+const PaddedTextContainer = styled.div`
+  width: 100%;
+  padding: 0 12.5%;
 `
 
 const SymbolContainer = styled.div`
@@ -122,10 +127,30 @@ export const Card = ({
   const symbol = type && IconTable[type]
   return (
     <CardContainer>
-      <BottomContainer>{bottom}</BottomContainer>
-      {left && <LeftContainer>{left}</LeftContainer>}
-      <TopContainer>{top}</TopContainer>
-      {right && <RightContainer>{right}</RightContainer>}
+      <BottomContainer>
+        <PaddedTextContainer>
+          {bottom}
+        </PaddedTextContainer>
+      </BottomContainer>
+      {left && (
+        <LeftContainer>
+          <PaddedTextContainer>
+            {left}
+          </PaddedTextContainer>
+        </LeftContainer>
+      )}
+      <TopContainer>
+        <PaddedTextContainer>
+          {top}
+        </PaddedTextContainer>
+      </TopContainer>
+      {right && (
+        <RightContainer>
+          <PaddedTextContainer>
+            {right}
+          </PaddedTextContainer>
+        </RightContainer>
+      )}
       {symbol && (
         <SymbolContainer title={symbol.alt}>
           {type === 'agent' && <PersonIcon />}
