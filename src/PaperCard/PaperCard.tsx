@@ -5,6 +5,7 @@ import { Card, CardType } from '../Card/Card'
 type PaperCardProps = {
   cards: CardType[]
   setActiveCard: (index: number) => void
+  offsetIndex?: number
   backs?: boolean
 }
 
@@ -46,7 +47,12 @@ const makeBack = (type: string) => {
   }
 }
 
-export const PaperCard = ({ cards, setActiveCard, backs }: PaperCardProps) => {
+export const PaperCard = ({
+  cards,
+  setActiveCard,
+  offsetIndex = 0,
+  backs
+}: PaperCardProps) => {
   const displayedCards = backs ? cards.map(c => makeBack(c.type)) : cards
   return (
     <PaperContainer>
@@ -54,7 +60,7 @@ export const PaperCard = ({ cards, setActiveCard, backs }: PaperCardProps) => {
         {displayedCards.map((card, index) => (
           <CardWrapper
             key={`cardwrapper-${index}`}
-            onClick={() => setActiveCard(index)}
+            onClick={() => setActiveCard(offsetIndex + index)}
           >
             <Card {...card} />
           </CardWrapper>

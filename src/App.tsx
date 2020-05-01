@@ -1,29 +1,12 @@
 import React, { useState } from 'react'
 import './App.css'
 import { CardType } from './Card/Card'
-import { PaperCard } from './PaperCard/PaperCard'
+import { PagesManager } from './PagesManager/PagesManager'
 import { LeftMenu } from './LeftMenu/LeftMenu'
 import styled from 'styled-components'
 
 const AppContainer = styled.div`
   display: flex;
-`
-
-const PaperCardScrollContainer = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: auto;
-  @media print {
-    overflow: visible;
-  }
-`
-
-const PaperCardScrollInner = styled.div`
-  padding: 5%;
-  @media print {
-    padding: 0;
-  }
 `
 
 const emptyCard = {
@@ -75,7 +58,6 @@ const App = () => {
   const importCards = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target?.files?.[0]
     file?.text().then(text => {
-      console.log(text)
       try {
         setCards(JSON.parse(text))
       } catch (e) {
@@ -99,14 +81,7 @@ const App = () => {
         importCards={importCards}
         clearCards={clearCards}
       />
-      <PaperCardScrollContainer>
-        <PaperCardScrollInner>
-          <PaperCard cards={cards} setActiveCard={setActiveCardIdx} />
-        </PaperCardScrollInner>
-        <PaperCardScrollInner>
-          <PaperCard cards={cards} setActiveCard={setActiveCardIdx} backs />
-        </PaperCardScrollInner>
-      </PaperCardScrollContainer>
+      <PagesManager cards={cards} setActiveCardIdx={setActiveCardIdx} />
     </AppContainer>
   );
 }
