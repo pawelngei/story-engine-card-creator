@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { Card, CardType } from '../Card/Card'
 
@@ -52,25 +52,17 @@ export const LeftMenu = ({
   setCard,
   createNewCard
 }: LeftMenuProps) => {
-  const [inputState, setInputState] = useState<CardType>(card)
-  const { top, bottom, left, right, type } = inputState
+  const { top, bottom, left, right, type } = card
   const setCardValue = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const value = event.target.value
     const key = event.target.name
-    setInputState({
-      ...inputState,
-      [key]: value
-    })
     setCard({
       ...card,
       [key]: value
     })
   }
-  useEffect(() => {
-    setInputState(card)
-  }, [card])
   return (
     <LeftMenuContainer>
       <Inner>
