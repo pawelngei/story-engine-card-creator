@@ -56,6 +56,14 @@ const App = () => {
     setActiveCardIdx(cards.length)
     setCards([...cards, emptyCard])
   }
+  const deleteCard = () => {
+    setCards([
+      ...cards.slice(0, activeCardIdx),
+      ...cards.slice(activeCardIdx + 1)
+    ])
+    const newIndex = activeCardIdx === 0 ? 0 : activeCardIdx - 1
+    setActiveCardIdx(newIndex)
+  }
   const card = cards[activeCardIdx]
   return (
     <AppContainer>
@@ -63,6 +71,7 @@ const App = () => {
         card={card}
         setCard={setCard}
         createNewCard={createNewCard}
+        deleteCard={deleteCard}
       />
       <PaperCardScrollContainer>
         <PaperCardScrollInner>

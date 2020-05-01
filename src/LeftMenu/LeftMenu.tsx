@@ -6,6 +6,7 @@ type LeftMenuProps = {
   card: CardType,
   setCard: (card: CardType) => void
   createNewCard: () => void
+  deleteCard: () => void
 }
 
 const LeftMenuContainer = styled.div`
@@ -25,6 +26,13 @@ const Inner = styled.div`
   align-items: center;
   background: teal;
   padding: 10%;
+`
+
+const CardActionsBar = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2em;
 `
 
 const CardContainer = styled.div`
@@ -50,7 +58,8 @@ const cardTypes = [
 export const LeftMenu = ({
   card,
   setCard,
-  createNewCard
+  createNewCard,
+  deleteCard
 }: LeftMenuProps) => {
   const { top, bottom, left, right, type } = card
   const setCardValue = (
@@ -66,9 +75,14 @@ export const LeftMenu = ({
   return (
     <LeftMenuContainer>
       <Inner>
-        <button onClick={() => createNewCard()}>
-          Create new card
-        </button>
+        <CardActionsBar>
+          <button onClick={() => createNewCard()}>
+            Create new card
+          </button>
+          <button onClick={() => deleteCard()}>
+            Delete this card
+          </button>
+        </CardActionsBar>
         <CardContainer>
           <Card 
             bottom={bottom}
