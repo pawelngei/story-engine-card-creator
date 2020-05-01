@@ -7,6 +7,7 @@ type LeftMenuProps = {
   setCard: (card: CardType) => void
   createNewCard: () => void
   deleteCard: () => void
+  exportCards: () => void
 }
 
 const LeftMenuContainer = styled.div`
@@ -66,7 +67,8 @@ export const LeftMenu = ({
   card,
   setCard,
   createNewCard,
-  deleteCard
+  deleteCard,
+  exportCards
 }: LeftMenuProps) => {
   const { top, bottom, left, right, type } = card
   const setCardValue = (
@@ -136,6 +138,7 @@ export const LeftMenu = ({
         </InputContainer>
         <PageActionsContainer>
           <button onClick={() => window.print()}>Print Cards</button>
+          <button onClick={() => exportCards()}>Export Cards</button>
         </PageActionsContainer>
       </Inner>
     </LeftMenuContainer>

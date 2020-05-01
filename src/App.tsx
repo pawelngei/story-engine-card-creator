@@ -64,6 +64,22 @@ const App = () => {
     const newIndex = activeCardIdx === 0 ? 0 : activeCardIdx - 1
     setActiveCardIdx(newIndex)
   }
+  const exportCards = () => {
+    const element = document.createElement('a');
+    const file = new Blob([JSON.stringify(cards)], {type: 'text/plain'})
+    element.href = URL.createObjectURL(file)
+    element.download = 'my-story-engine-cards.json'
+    document.body.appendChild(element)
+    element.click()
+    // downloadTxtFile = () => {
+    //   const element = document.createElement("a");
+    //   const file = new Blob([document.getElementById('myInput').value], {type: 'text/plain'});
+    //   element.href = URL.createObjectURL(file);
+    //   element.download = "myFile.txt";
+    //   document.body.appendChild(element); // Required for this to work in FireFox
+    //   element.click();
+    // }
+  }
   const card = cards[activeCardIdx]
   return (
     <AppContainer>
@@ -72,6 +88,7 @@ const App = () => {
         setCard={setCard}
         createNewCard={createNewCard}
         deleteCard={deleteCard}
+        exportCards={exportCards}
       />
       <PaperCardScrollContainer>
         <PaperCardScrollInner>
