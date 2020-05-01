@@ -8,6 +8,7 @@ type LeftMenuProps = {
   createNewCard: () => void
   deleteCard: () => void
   exportCards: () => void
+  importCards: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const LeftMenuContainer = styled.div`
@@ -68,7 +69,8 @@ export const LeftMenu = ({
   setCard,
   createNewCard,
   deleteCard,
-  exportCards
+  exportCards,
+  importCards
 }: LeftMenuProps) => {
   const { top, bottom, left, right, type } = card
   const setCardValue = (
@@ -139,6 +141,7 @@ export const LeftMenu = ({
         <PageActionsContainer>
           <button onClick={() => window.print()}>Print Cards</button>
           <button onClick={() => exportCards()}>Export Cards</button>
+          Import: <input type="file" name="file" onChange={e => importCards(e)}/>
         </PageActionsContainer>
       </Inner>
     </LeftMenuContainer>

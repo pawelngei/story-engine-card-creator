@@ -71,14 +71,17 @@ const App = () => {
     element.download = 'my-story-engine-cards.json'
     document.body.appendChild(element)
     element.click()
-    // downloadTxtFile = () => {
-    //   const element = document.createElement("a");
-    //   const file = new Blob([document.getElementById('myInput').value], {type: 'text/plain'});
-    //   element.href = URL.createObjectURL(file);
-    //   element.download = "myFile.txt";
-    //   document.body.appendChild(element); // Required for this to work in FireFox
-    //   element.click();
-    // }
+  }
+  const importCards = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target?.files?.[0]
+    file?.text().then(text => {
+      console.log(text)
+      try {
+        setCards(JSON.parse(text))
+      } catch (e) {
+        alert(`Wrong file imported - ${e}`)
+      }
+    })
   }
   const card = cards[activeCardIdx]
   return (
@@ -89,6 +92,7 @@ const App = () => {
         createNewCard={createNewCard}
         deleteCard={deleteCard}
         exportCards={exportCards}
+        importCards={importCards}
       />
       <PaperCardScrollContainer>
         <PaperCardScrollInner>
