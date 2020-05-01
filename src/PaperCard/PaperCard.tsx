@@ -28,6 +28,7 @@ const PrintableArea = styled.div<{ reversed: boolean }>`
   display: flex;
   flex-wrap: wrap;
   flex-direction: ${({ reversed }) => reversed ? 'row-reverse' : 'row' };
+  align-content: flex-start;
 `
 
 const CardWrapper = styled.div`
