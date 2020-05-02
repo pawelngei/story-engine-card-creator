@@ -57,8 +57,12 @@ const App = () => {
     ])
   }
   const createNewCard = () => {
+    const lastType = cards[activeCardIdx].type
     setActiveCardIdx(cards.length)
-    setAndSaveCards([...cards, emptyCard])
+    setAndSaveCards([...cards, {
+      ...emptyCard,
+      type: lastType
+    }])
   }
   const deleteCard = () => {
     if (cards.length === 1) {
