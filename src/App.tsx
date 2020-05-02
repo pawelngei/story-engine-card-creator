@@ -3,10 +3,24 @@ import './App.css'
 import { CardType } from './Card/Card'
 import { PagesManager } from './PagesManager/PagesManager'
 import { LeftMenu } from './LeftMenu/LeftMenu'
+import { MobilePlaceholder } from './MobilePlaceholder/MobilePlaceholder'
 import styled from 'styled-components'
 
 const AppContainer = styled.div`
+  display: block;
+`
+
+const TabletDesktopWrapper = styled.div`
   display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  @media (max-width: 767px) {
+    display: none;
+  }
+  @media print {
+    display: flex;
+  }
 `
 
 const emptyCard = {
@@ -72,16 +86,19 @@ const App = () => {
   const card = cards[activeCardIdx]
   return (
     <AppContainer>
-      <LeftMenu
-        card={card}
-        setCard={setCard}
-        createNewCard={createNewCard}
-        deleteCard={deleteCard}
-        exportCards={exportCards}
-        importCards={importCards}
-        clearCards={clearCards}
-      />
-      <PagesManager cards={cards} setActiveCardIdx={setActiveCardIdx} />
+      <MobilePlaceholder />
+      <TabletDesktopWrapper>
+        <LeftMenu
+          card={card}
+          setCard={setCard}
+          createNewCard={createNewCard}
+          deleteCard={deleteCard}
+          exportCards={exportCards}
+          importCards={importCards}
+          clearCards={clearCards}
+        />
+        <PagesManager cards={cards} setActiveCardIdx={setActiveCardIdx} />
+      </TabletDesktopWrapper>
     </AppContainer>
   );
 }
