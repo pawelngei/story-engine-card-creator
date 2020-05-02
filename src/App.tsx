@@ -40,9 +40,9 @@ const sampleCard = {
 }
 
 const App = () => {
-  const savedCards = JSON.parse(window.localStorage.getItem('cards') || '[]')
+  const savedCards = JSON.parse(window.localStorage.getItem('cards') || 'null')
   const [cards, setCards] = useState<CardType[]>(
-    savedCards === [] ? [sampleCard] : savedCards
+    savedCards || [sampleCard]
   )
   const [activeCardIdx, setActiveCardIdx] = useState(0)
   const setAndSaveCards = (cards: CardType[]) => {
@@ -61,10 +61,14 @@ const App = () => {
     setAndSaveCards([...cards, emptyCard])
   }
   const deleteCard = () => {
-    setAndSaveCards([
-      ...cards.slice(0, activeCardIdx),
-      ...cards.slice(activeCardIdx + 1)
-    ])
+    if (cards.length === 1) {
+      setAndSaveCards([sampleCard])
+    } else {
+      setAndSaveCards([
+        ...cards.slice(0, activeCardIdx),
+        ...cards.slice(activeCardIdx + 1)
+      ])
+    }
     const newIndex = activeCardIdx === 0 ? 0 : activeCardIdx - 1
     setActiveCardIdx(newIndex)
   }
