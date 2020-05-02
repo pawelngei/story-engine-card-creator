@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import './App.css'
 import { CardType } from './Card/Card'
 import { PagesManager } from './PagesManager/PagesManager'
 import { LeftMenu } from './LeftMenu/LeftMenu'
 import { MobilePlaceholder } from './MobilePlaceholder/MobilePlaceholder'
 import styled from 'styled-components'
+import './App.css'
 
 const AppContainer = styled.div`
   display: block;
@@ -40,10 +40,17 @@ const sampleCard = {
 }
 
 const App = () => {
-  const [cards, setCards] = useState<CardType[]>([sampleCard])
+  const savedCards = JSON.parse(window.localStorage.getItem('cards') || '[]')
+  const [cards, setCards] = useState<CardType[]>(
+    savedCards === [] ? [sampleCard] : savedCards
+  )
   const [activeCardIdx, setActiveCardIdx] = useState(0)
+  const setAndSaveCards = (cards: CardType[]) => {
+    setCards(cards)
+    window.localStorage.setItem('cards', JSON.stringify(cards))
+  }
   const setCard = (changedCard: CardType) => {
-    setCards([
+    setAndSaveCards([
       ...cards.slice(0, activeCardIdx),
       changedCard,
       ...cards.slice(activeCardIdx + 1)
@@ -51,10 +58,10 @@ const App = () => {
   }
   const createNewCard = () => {
     setActiveCardIdx(cards.length)
-    setCards([...cards, emptyCard])
+    setAndSaveCards([...cards, emptyCard])
   }
   const deleteCard = () => {
-    setCards([
+    setAndSaveCards([
       ...cards.slice(0, activeCardIdx),
       ...cards.slice(activeCardIdx + 1)
     ])
@@ -73,14 +80,14 @@ const App = () => {
     const file = e.target?.files?.[0]
     file?.text().then(text => {
       try {
-        setCards(JSON.parse(text))
+        setAndSaveCards(JSON.parse(text))
       } catch (e) {
         alert(`Wrong file imported - ${e}`)
       }
     })
   }
   const clearCards = () => {
-    setCards([sampleCard])
+    setAndSaveCards([sampleCard])
     setActiveCardIdx(0)
   }
   const card = cards[activeCardIdx]
