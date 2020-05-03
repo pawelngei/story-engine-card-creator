@@ -10,6 +10,8 @@ type LeftMenuProps = {
   exportCards: () => void
   importCards: (e: React.ChangeEvent<HTMLInputElement>) => void
   clearCards: () => void
+  displayBacks: boolean
+  setDisplayBacks: (show: boolean) => void
 }
 
 const LeftMenuContainer = styled.div`
@@ -58,7 +60,7 @@ const PageActionsBar = styled.div`
   flex-wrap: wrap;
 `
 
-const ImportFileContainer = styled.div`
+const ActionsLine = styled.div`
   padding-top: 1em;
   width: 100%;
 `
@@ -78,7 +80,9 @@ export const LeftMenu = ({
   deleteCard,
   exportCards,
   importCards,
-  clearCards
+  clearCards,
+  displayBacks,
+  setDisplayBacks
 }: LeftMenuProps) => {
   const { top, bottom, left, right, type } = card
   const setCardValue = (
@@ -98,10 +102,22 @@ export const LeftMenu = ({
           <button onClick={() => clearCards()}>Clear Cards</button>
           <button onClick={() => window.print()}>Print Cards</button>
           <button onClick={() => exportCards()}>Export Cards</button>
-          <ImportFileContainer>
+          <ActionsLine>
             Import:
             <input type="file" name="file" onChange={e => importCards(e)}/>
-          </ImportFileContainer>
+          </ActionsLine>
+          <ActionsLine>
+            <input
+              type="checkbox"
+              id="backs"
+              name="backs"
+              checked={displayBacks}
+              onChange={() => setDisplayBacks(!displayBacks)}
+            />
+            <label htmlFor="backs">
+              Display Card Backs
+            </label>
+          </ActionsLine>
         </PageActionsBar>
         <CardActionsBar>
           <button onClick={() => createNewCard()}>

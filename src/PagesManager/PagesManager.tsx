@@ -8,6 +8,7 @@ const CARDS_PER_PAGE = 12
 type PagesManagerProps = {
   cards: CardType[]
   setActiveCardIdx: (index: number) => void
+  displayBacks: boolean
 }
 
 const PaperCardScrollContainer = styled.div`
@@ -27,9 +28,17 @@ const PaperCardScrollInner = styled.div`
   }
 `
 
+const BackPaperCardScrollInner = styled(PaperCardScrollInner)<{visible: boolean}>`
+  display: ${({ visible }) => visible ? 'block' : 'none'};
+  @media print {
+    display: block !important;
+  }
+`
+
 export const PagesManager = ({
   cards,
-  setActiveCardIdx
+  setActiveCardIdx,
+  displayBacks
 }: PagesManagerProps) => {
   const numberOfPages = Math.ceil(cards.length / CARDS_PER_PAGE)
   const pages = Array.from(Array(numberOfPages).keys()).map(i => {
@@ -47,14 +56,17 @@ export const PagesManager = ({
                 setActiveCard={setActiveCardIdx}
               />
             </PaperCardScrollInner>
-            <PaperCardScrollInner key={`back-page-${index}`}>
+            <BackPaperCardScrollInner
+              key={`back-page-${index}`}
+              visible={displayBacks}
+            >
               <PaperCard
                 offsetIndex={index * CARDS_PER_PAGE}
                 cards={cardsOnPage}
                 setActiveCard={setActiveCardIdx}
                 backs
               />
-            </PaperCardScrollInner>
+            </BackPaperCardScrollInner>
           </div>
         )
       })}

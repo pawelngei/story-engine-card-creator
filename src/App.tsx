@@ -45,6 +45,7 @@ const App = () => {
     savedCards || [sampleCard]
   )
   const [activeCardIdx, setActiveCardIdx] = useState(0)
+  const [displayBacks, setDisplayBacks] = useState(false)
   const setAndSaveCards = (cards: CardType[]) => {
     setCards(cards)
     window.localStorage.setItem('cards', JSON.stringify(cards))
@@ -116,8 +117,14 @@ const App = () => {
           exportCards={exportCards}
           importCards={importCards}
           clearCards={clearCards}
+          displayBacks={displayBacks}
+          setDisplayBacks={setDisplayBacks}
         />
-        <PagesManager cards={cards} setActiveCardIdx={setActiveCardIdx} />
+        <PagesManager
+          cards={cards}
+          setActiveCardIdx={setActiveCardIdx}
+          displayBacks={displayBacks}
+        />
       </TabletDesktopWrapper>
     </AppContainer>
   );
