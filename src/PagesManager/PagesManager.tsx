@@ -2,14 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import { PaperCard } from '../PaperCard/PaperCard'
 import { CardType } from '../Card/Card'
+import { DisplayOptions } from '../App'
 
 const CARDS_PER_PAGE = 12
 
 type PagesManagerProps = {
   cards: CardType[]
   setActiveCardIdx: (index: number) => void
-  displayBacks: boolean
-  backQuality: string
+  displayOptions: DisplayOptions
 }
 
 const PaperCardScrollContainer = styled.div`
@@ -39,9 +39,9 @@ const BackPaperCardScrollInner = styled(PaperCardScrollInner)<{visible: boolean}
 export const PagesManager = ({
   cards,
   setActiveCardIdx,
-  displayBacks,
-  backQuality
+  displayOptions
 }: PagesManagerProps) => {
+  const { displayBacks, backQuality } = displayOptions
   const numberOfPages = Math.ceil(cards.length / CARDS_PER_PAGE)
   const pages = Array.from(Array(numberOfPages).keys()).map(i => {
     return cards.slice(i*CARDS_PER_PAGE, (i+1)*CARDS_PER_PAGE)

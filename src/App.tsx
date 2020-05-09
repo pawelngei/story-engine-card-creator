@@ -7,6 +7,11 @@ import styled from 'styled-components'
 import { exportCSV, importCSV } from './utils/csv'
 import './App.css'
 
+export type DisplayOptions = {
+  backQuality: string
+  displayBacks: boolean
+}
+
 const AppContainer = styled.div`
   display: block;
 `
@@ -40,17 +45,29 @@ const sampleCard = {
   type: 'engine'
 }
 
+const defaultOptions = {
+  displayBacks: false,
+  backQuality: 'black'
+}
+
 const App = () => {
   const savedCards = JSON.parse(window.localStorage.getItem('cards') || 'null')
+  const savedOptions = JSON.parse(
+    window.localStorage.getItem('displayOptions') || 'null')
   const [cards, setCards] = useState<CardType[]>(
     savedCards || [sampleCard]
   )
   const [activeCardIdx, setActiveCardIdx] = useState(0)
-  const [displayBacks, setDisplayBacks] = useState(false)
-  const [backQuality, setBackQuality] = useState('black')
+  const [displayOptions, setDisplayOptions] = useState<DisplayOptions>(
+    savedOptions || defaultOptions
+  )
   const setAndSaveCards = (cards: CardType[]) => {
     setCards(cards)
     window.localStorage.setItem('cards', JSON.stringify(cards))
+  }
+  const setAndSaveOptions = (options: DisplayOptions) => {
+    setDisplayOptions(options)
+    window.localStorage.setItem('displayOptions', JSON.stringify(options))
   }
   const setCard = (changedCard: CardType) => {
     setAndSaveCards([
@@ -120,16 +137,13 @@ const App = () => {
           exportCards={exportCards}
           importCards={importCards}
           clearCards={clearCards}
-          displayBacks={displayBacks}
-          setDisplayBacks={setDisplayBacks}
-          backQuality={backQuality}
-          setBackQuality={setBackQuality}
+          displayOptions={displayOptions}
+          setDisplayOptions={setAndSaveOptions}
         />
         <PagesManager
           cards={cards}
           setActiveCardIdx={setActiveCardIdx}
-          displayBacks={displayBacks}
-          backQuality={backQuality}
+          displayOptions={displayOptions}
         />
       </TabletDesktopWrapper>
     </AppContainer>

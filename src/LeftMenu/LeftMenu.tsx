@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Card, CardType } from '../Card/Card'
 import { colors } from '../styles/colors'
+import { DisplayOptions } from '../App'
 
 type LeftMenuProps = {
   card: CardType,
@@ -11,10 +12,8 @@ type LeftMenuProps = {
   exportCards: () => void
   importCards: (e: React.ChangeEvent<HTMLInputElement>) => void
   clearCards: () => void
-  displayBacks: boolean
-  setDisplayBacks: (show: boolean) => void
-  backQuality: string
-  setBackQuality: (quality: string) => void
+  displayOptions: DisplayOptions
+  setDisplayOptions: (displayOptions: DisplayOptions) => void
 }
 
 const LeftMenuContainer = styled.div`
@@ -90,10 +89,8 @@ export const LeftMenu = ({
   exportCards,
   importCards,
   clearCards,
-  displayBacks,
-  setDisplayBacks,
-  backQuality,
-  setBackQuality
+  displayOptions,
+  setDisplayOptions,
 }: LeftMenuProps) => {
   const { top, bottom, left, right, type } = card
   const setCardValue = (
@@ -106,6 +103,7 @@ export const LeftMenu = ({
       [key]: value
     })
   }
+  const { displayBacks, backQuality } = displayOptions
   return (
     <LeftMenuContainer>
       <Inner>
@@ -123,7 +121,10 @@ export const LeftMenu = ({
               id="backs"
               name="backs"
               checked={displayBacks}
-              onChange={() => setDisplayBacks(!displayBacks)}
+              onChange={() => setDisplayOptions({
+                ...displayOptions,
+                displayBacks: !displayBacks
+              })}
             />
             <label htmlFor="backs">
               Display Card Backs
@@ -134,7 +135,10 @@ export const LeftMenu = ({
             <select
               name='backQuality'
               value={backQuality}
-              onChange={e => setBackQuality(e.target.value)}
+              onChange={e => setDisplayOptions({
+                ...displayOptions,
+                backQuality: e.target.value
+              })}
             >
               {backQualityOptions.map((quality, i) => (
                 <option key={`select-back-${i}`} value={quality}>{quality}</option>
