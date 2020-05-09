@@ -13,6 +13,8 @@ type LeftMenuProps = {
   clearCards: () => void
   displayBacks: boolean
   setDisplayBacks: (show: boolean) => void
+  backQuality: string
+  setBackQuality: (quality: string) => void
 }
 
 const LeftMenuContainer = styled.div`
@@ -74,6 +76,11 @@ const cardTypes = [
   'engine'
 ]
 
+const backQualityOptions = [
+  'black',
+  'color'
+]
+
 export const LeftMenu = ({
   card,
   setCard,
@@ -83,7 +90,9 @@ export const LeftMenu = ({
   importCards,
   clearCards,
   displayBacks,
-  setDisplayBacks
+  setDisplayBacks,
+  backQuality,
+  setBackQuality
 }: LeftMenuProps) => {
   const { top, bottom, left, right, type } = card
   const setCardValue = (
@@ -118,6 +127,18 @@ export const LeftMenu = ({
             <label htmlFor="backs">
               Display Card Backs
             </label>
+          </ActionsLine>
+          <ActionsLine>
+            Card Back Quality:
+            <select
+              name='backQuality'
+              value={backQuality}
+              onChange={e => setBackQuality(e.target.value)}
+            >
+              {backQualityOptions.map((quality, i) => (
+                <option key={`select-back-${i}`} value={quality}>{quality}</option>
+              ))}
+            </select>
           </ActionsLine>
         </PageActionsBar>
         <CardActionsBar>

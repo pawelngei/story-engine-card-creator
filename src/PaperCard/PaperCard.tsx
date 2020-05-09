@@ -7,6 +7,7 @@ type PaperCardProps = {
   setActiveCard: (index: number) => void
   offsetIndex?: number
   backs?: boolean
+  backQuality?: string
 }
 
 const PaperContainer = styled.div`
@@ -51,6 +52,7 @@ export const PaperCard = ({
   cards,
   setActiveCard,
   offsetIndex = 0,
+  backQuality,
   backs
 }: PaperCardProps) => {
   const displayedCards = backs ? cards.map(c => makeBack(c.type)) : cards
@@ -62,7 +64,7 @@ export const PaperCard = ({
             key={`cardwrapper-${index}`}
             onClick={() => setActiveCard(offsetIndex + index)}
           >
-            <Card {...card} />
+            <Card backQuality={backQuality} {...card} />
           </CardWrapper>
         ))}
       </PrintableArea>

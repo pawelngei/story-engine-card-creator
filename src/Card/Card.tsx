@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { colors } from '../styles/colors'
 import { ReactComponent as AnchorSvg } from './anchor.svg'
 import { ReactComponent as MaskSvg } from './mask.svg'
 import { ReactComponent as PersonSvg } from './person.svg'
@@ -14,6 +15,10 @@ export type CardType = {
   type: string
 }
 
+type CardProps = CardType & {
+  backQuality?: string
+}
+
 type IconTableType = {
   [id: string]: {
     alt: string
@@ -21,7 +26,7 @@ type IconTableType = {
   }
 }
 
-const CardContainer = styled.div`
+const CardContainer = styled.div<{color: string}>`
   width: 100%;
   padding-top: 100%;
   border: 1px solid black;
@@ -29,6 +34,7 @@ const CardContainer = styled.div`
   background: white;
   color: black;
   position: relative;
+  ${({ color }) => color ? `color: ${ color };` : ''}
 `
 
 const TextContainer = styled.div`
@@ -122,11 +128,13 @@ export const Card = ({
   left,
   top,
   right,
-  type
-}: CardType) => {
+  type,
+  backQuality
+}: CardProps) => {
   const symbol = type && IconTable[type]
+  const color = backQuality === 'color' ? colors[type] : colors.black
   return (
-    <CardContainer>
+    <CardContainer color={color}>
       <BottomContainer>
         <PaddedTextContainer>
           {bottom}

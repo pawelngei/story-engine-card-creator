@@ -46,6 +46,7 @@ const App = () => {
   )
   const [activeCardIdx, setActiveCardIdx] = useState(0)
   const [displayBacks, setDisplayBacks] = useState(false)
+  const [backQuality, setBackQuality] = useState('black')
   const setAndSaveCards = (cards: CardType[]) => {
     setCards(cards)
     window.localStorage.setItem('cards', JSON.stringify(cards))
@@ -119,11 +120,14 @@ const App = () => {
           clearCards={clearCards}
           displayBacks={displayBacks}
           setDisplayBacks={setDisplayBacks}
+          backQuality={backQuality}
+          setBackQuality={setBackQuality}
         />
         <PagesManager
           cards={cards}
           setActiveCardIdx={setActiveCardIdx}
           displayBacks={displayBacks}
+          backQuality={backQuality}
         />
       </TabletDesktopWrapper>
     </AppContainer>

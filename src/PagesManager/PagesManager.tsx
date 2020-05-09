@@ -9,6 +9,7 @@ type PagesManagerProps = {
   cards: CardType[]
   setActiveCardIdx: (index: number) => void
   displayBacks: boolean
+  backQuality: string
 }
 
 const PaperCardScrollContainer = styled.div`
@@ -38,7 +39,8 @@ const BackPaperCardScrollInner = styled(PaperCardScrollInner)<{visible: boolean}
 export const PagesManager = ({
   cards,
   setActiveCardIdx,
-  displayBacks
+  displayBacks,
+  backQuality
 }: PagesManagerProps) => {
   const numberOfPages = Math.ceil(cards.length / CARDS_PER_PAGE)
   const pages = Array.from(Array(numberOfPages).keys()).map(i => {
@@ -64,6 +66,7 @@ export const PagesManager = ({
                 offsetIndex={index * CARDS_PER_PAGE}
                 cards={cardsOnPage}
                 setActiveCard={setActiveCardIdx}
+                backQuality={backQuality}
                 backs
               />
             </BackPaperCardScrollInner>
