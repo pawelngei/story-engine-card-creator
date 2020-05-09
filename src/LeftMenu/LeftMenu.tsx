@@ -78,7 +78,8 @@ const cardTypes = [
 
 const backQualityOptions = [
   'black',
-  'color'
+  'color',
+  'img-color'
 ]
 
 export const LeftMenu = ({

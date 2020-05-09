@@ -6,6 +6,11 @@ import { ReactComponent as MaskSvg } from './mask.svg'
 import { ReactComponent as PersonSvg } from './person.svg'
 import { ReactComponent as CogSvg } from './cog.svg'
 import { ReactComponent as StormSvg } from './storm.svg'
+import AgentHQ from './backs/back-agent.jpg'
+import AnchorHQ from './backs/back-anchor.jpg'
+import AspectHQ from './backs/back-aspect.jpg'
+import ConflictHQ from './backs/back-conflict.jpg'
+import EngineHQ from './backs/back-engine.jpg'
 
 export type CardType = {
   bottom: string
@@ -19,14 +24,20 @@ type CardProps = CardType & {
   backQuality?: string
 }
 
-type IconTableType = {
-  [id: string]: {
-    alt: string
-    component: React.ReactNode
-  }
+type ImageDictionaryType = {
+  [key: string]: string
 }
 
-const CardContainer = styled.div<{color: string}>`
+const hqImageDictionary: ImageDictionaryType = {
+  agent: AgentHQ,
+  anchor: AnchorHQ,
+  aspect: AspectHQ,
+  conflict: ConflictHQ,
+  engine: EngineHQ
+}
+
+
+const CardContainer = styled.div<{color?: string}>`
   width: 100%;
   padding-top: 100%;
   border: 1px solid black;
@@ -37,7 +48,7 @@ const CardContainer = styled.div<{color: string}>`
   ${({ color }) => color ? `color: ${ color };` : ''}
 `
 
-const TextContainer = styled.div`
+const SideText = styled.div`
   position: absolute;
   text-align: center;
   width: 100%;
@@ -50,32 +61,32 @@ const TextContainer = styled.div`
   font-family: 'Ubuntu';
 `
 
-const BottomContainer = styled(TextContainer)`
+const BottomContainer = styled(SideText)`
   left: 0;
   bottom: 5%;
 `
 
-const LeftContainer = styled(TextContainer)`
+const LeftContainer = styled(SideText)`
   top: -2.5%;
   left: 5%;
   transform: rotate(90deg) translateX(-3em);
   transform-origin: bottom left;
 `
 
-const TopContainer = styled(TextContainer)`
+const TopContainer = styled(SideText)`
   left: 0;
   top: 5%;
   transform: rotate(180deg);
 `
 
-const RightContainer = styled(TextContainer)`
+const RightContainer = styled(SideText)`
   top: -2.5%;
   right: 5%;
   transform: rotate(270deg) translateX(3em);
   transform-origin: bottom right;
 `
 
-const PaddedTextContainer = styled.div`
+const PaddedSideText = styled.div`
   width: 100%;
   padding: 0 12.5%;
 `
@@ -100,30 +111,25 @@ const PersonIcon = StyledIcon.withComponent(PersonSvg)
 const CogIcon = StyledIcon.withComponent(CogSvg)
 const StormIcon = StyledIcon.withComponent(StormSvg)
 
-const IconTable: IconTableType = {
-  agent: {
-    alt: "Icons made by https://www.flaticon.com/authors/freepik Freepik from https://www.flaticon.com/",
-    component: PersonIcon
-  },
-  anchor: {
-    alt: "Icons made by https://www.flaticon.com/authors/freepik Freepik from https://www.flaticon.com/",
-    component: AnchorIcon
-  },
-  aspect: {
-    alt: "Icons made by https://www.flaticon.com/authors/freepik Freepik from https://www.flaticon.com/",
-    component: MaskIcon
-  },
-  conflict: {
-    alt: "Icons made by https://www.flaticon.com/authors/freepik Freepik from https://www.flaticon.com/",
-    component: StormIcon
-  },
-  engine: {
-    alt: "Icons made by https://www.flaticon.com/authors/freepik Freepik from https://www.flaticon.com/",
-    component: CogIcon
-  },
+const StyledBackImage = styled.img`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+`
+
+const ImageCard = ({ type }: { type: string }) => {
+  return (
+    <CardContainer>
+      <StyledBackImage src={hqImageDictionary[type]} />
+    </CardContainer>
+  )
 }
 
-export const Card = ({
+const TextCard = ({
   bottom,
   left,
   top,
@@ -131,43 +137,48 @@ export const Card = ({
   type,
   backQuality
 }: CardProps) => {
-  const symbol = type && IconTable[type]
+  const alt = 'Icons made by https://www.flaticon.com/authors/freepik Freepik from https://www.flaticon.com/'
   const color = backQuality === 'color' ? colors[type] : colors.black
   return (
     <CardContainer color={color}>
       <BottomContainer>
-        <PaddedTextContainer>
+        <PaddedSideText>
           {bottom}
-        </PaddedTextContainer>
+        </PaddedSideText>
       </BottomContainer>
       {left && (
         <LeftContainer>
-          <PaddedTextContainer>
+          <PaddedSideText>
             {left}
-          </PaddedTextContainer>
+          </PaddedSideText>
         </LeftContainer>
       )}
       <TopContainer>
-        <PaddedTextContainer>
+        <PaddedSideText>
           {top}
-        </PaddedTextContainer>
+        </PaddedSideText>
       </TopContainer>
       {right && (
         <RightContainer>
-          <PaddedTextContainer>
+          <PaddedSideText>
             {right}
-          </PaddedTextContainer>
+          </PaddedSideText>
         </RightContainer>
       )}
-      {symbol && (
-        <SymbolContainer title={symbol.alt}>
-          {type === 'agent' && <PersonIcon />}
-          {type === 'anchor' && <AnchorIcon />}
-          {type === 'aspect' && <MaskIcon />}
-          {type === 'conflict' && <StormIcon />}
-          {type === 'engine' && <CogIcon />}
-        </SymbolContainer>
-      )}
+      <SymbolContainer title={alt}>
+        {type === 'agent' && <PersonIcon />}
+        {type === 'anchor' && <AnchorIcon />}
+        {type === 'aspect' && <MaskIcon />}
+        {type === 'conflict' && <StormIcon />}
+        {type === 'engine' && <CogIcon />}
+      </SymbolContainer>
     </CardContainer>
   )
+}
+
+export const Card = (props: CardProps) => {
+  if (props?.backQuality === 'img-color') {
+    return <ImageCard type={props.type} />
+  }
+  return <TextCard {...props} />
 }
