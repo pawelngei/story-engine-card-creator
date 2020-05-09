@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Card, CardType } from '../Card/Card'
+import { colors } from '../styles/colors'
 
 type LeftMenuProps = {
   card: CardType,
@@ -18,7 +19,8 @@ const LeftMenuContainer = styled.div`
   position: relative;
   height: 100vh;
   border-right: 1px solid black;
-  background: gray;
+  background: ${colors.navy};
+  color: ${colors.white};
   @media print {
     display: none;
   }
@@ -29,7 +31,6 @@ const Inner = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: teal;
   padding: 10%;
 `
 
