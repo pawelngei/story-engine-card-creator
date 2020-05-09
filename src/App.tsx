@@ -4,6 +4,7 @@ import { PagesManager } from './PagesManager/PagesManager'
 import { LeftMenu } from './LeftMenu/LeftMenu'
 import { MobilePlaceholder } from './MobilePlaceholder/MobilePlaceholder'
 import styled from 'styled-components'
+import { exportCSV, importCSV } from './utils/csv'
 import './App.css'
 
 const AppContainer = styled.div`
@@ -84,10 +85,11 @@ const App = () => {
     setActiveCardIdx(newIndex)
   }
   const exportCards = () => {
-    const element = document.createElement('a');
-    const file = new Blob([JSON.stringify(cards)], {type: 'text/plain'})
+    const element = document.createElement('a')
+    const csvContent = exportCSV(cards)
+    const file = new Blob([csvContent], {type: 'text/csv'})
     element.href = URL.createObjectURL(file)
-    element.download = 'my-story-engine-cards.json'
+    element.download = 'my-story-engine-cards.csv'
     document.body.appendChild(element)
     element.click()
   }
@@ -95,7 +97,7 @@ const App = () => {
     const file = e.target?.files?.[0]
     file?.text().then(text => {
       try {
-        setAndSaveCards(JSON.parse(text))
+        setAndSaveCards(importCSV(text))
       } catch (e) {
         alert(`Wrong file imported - ${e}`)
       }
