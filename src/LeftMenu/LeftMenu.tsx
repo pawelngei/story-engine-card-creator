@@ -44,6 +44,12 @@ const CardActionsBar = styled.div`
 
 const CardContainer = styled.div`
   width: 100%;
+  display: flex;
+  justify-content: center;
+`
+
+const CardSizeLimiter = styled.div`
+  width: 281px;
 `
 
 const InputContainer = styled.div`
@@ -155,13 +161,15 @@ export const LeftMenu = ({
           </button>
         </CardActionsBar>
         <CardContainer>
-          <Card 
-            bottom={bottom}
-            top={top}
-            left={left}
-            right={right}
-            type={type}
-          />
+          <CardSizeLimiter>
+            <Card
+              bottom={bottom}
+              top={top}
+              left={left}
+              right={right}
+              type={type}
+            />
+          </CardSizeLimiter>
         </CardContainer>
         <InputContainer>
           <StyledInput
