@@ -5,7 +5,6 @@ import { LeftMenu } from './LeftMenu/LeftMenu'
 import { MobilePlaceholder } from './MobilePlaceholder/MobilePlaceholder'
 import styled from 'styled-components'
 import { exportCSV, importCSV } from './utils/csv'
-import './App.css'
 
 export type DisplayOptions = {
   backQuality: string

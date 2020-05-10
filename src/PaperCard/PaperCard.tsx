@@ -11,9 +11,9 @@ type PaperCardProps = {
 }
 
 const PaperContainer = styled.div`
+  width: 210mm;
+  height: 297mm;
   position: relative;
-  width: 100%;
-  padding-top: 141.42%;
   border: 1px solid black;
   @media print {
     border: none;
@@ -22,7 +22,6 @@ const PaperContainer = styled.div`
 
 const PrintableArea = styled.div<{ reversed: boolean }>`
   position: absolute;
-  border: 1px dotted black;
   top: 5%;
   left: 5%;
   width: 90%;
@@ -53,7 +52,7 @@ export const PaperCard = ({
   setActiveCard,
   offsetIndex = 0,
   backQuality,
-  backs
+  backs,
 }: PaperCardProps) => {
   const displayedCards = backs ? cards.map(c => makeBack(c.type)) : cards
   return (
