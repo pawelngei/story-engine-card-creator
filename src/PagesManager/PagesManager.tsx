@@ -35,12 +35,12 @@ const InnerScrollContainer = styled.div<{multiplier: number}>`
 
 const PageWrapper = styled.div`
   display: inline-block;
-  margin: 2.5% 5%;
+  margin: 20px 40px; /* need to be px, not percent */
   &:first-of-type {
-    margin-top: 5%;
+    margin-top: 40px;
   }
   &:last-of-type {
-    margin-bottom: 5%;
+    margin-bottom: 40px;
   }
   @media print {
     margin: 0 !important;
