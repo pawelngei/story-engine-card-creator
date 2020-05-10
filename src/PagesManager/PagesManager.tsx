@@ -33,6 +33,11 @@ const InnerScrollContainer = styled.div<{multiplier: number}>`
   }
 `
 
+const TwoPageWrapper = styled.div`
+  display: inline-flex;
+  flex-direction: column;
+`
+
 const PageWrapper = styled.div`
   display: inline-block;
   margin: 20px 40px; /* need to be px, not percent */
@@ -87,7 +92,7 @@ export const PagesManager = ({
       <InnerScrollContainer multiplier={widthMultiplier}>
         {pages.map((cardsOnPage, index) => {
           return (
-            <div key={`page-set-${index}`}>
+            <TwoPageWrapper key={`page-set-${index}`}>
               <PageWrapper
                 key={`front-page-${index}`}
               >
@@ -109,7 +114,7 @@ export const PagesManager = ({
                   backs
                 />
               </BackPageWrapper>
-            </div>
+            </TwoPageWrapper>
           )
         })}
       </InnerScrollContainer>
