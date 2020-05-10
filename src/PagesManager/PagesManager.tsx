@@ -16,7 +16,8 @@ const PaperCardScrollContainer = styled.div`
   position: relative;
   width: 100%;
   height: 100vh;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   @media print {
     overflow: visible;
   }
@@ -66,14 +67,21 @@ export const PagesManager = ({
     return cards.slice(i*CARDS_PER_PAGE, (i+1)*CARDS_PER_PAGE)
   })
   useEffect(() => {
-    const containerWidth = containerRef.current?.clientWidth || 0
-    const pageWidth = 795.69 // pixels for 210mm, A4
-    const paddedWidth = pageWidth * 1.1
-    const multiplier = containerWidth / paddedWidth
-    if (multiplier) {
-      setWidthMultiplier(multiplier)
+    const updateWidth = () => {
+      const containerWidth = containerRef.current?.clientWidth || 0
+      const pageWidth = 795.69 // pixels for 210mm, A4
+      const paddedWidth = pageWidth * 1.10
+      const multiplier = containerWidth / paddedWidth
+      if (multiplier) {
+        setWidthMultiplier(multiplier)
+      }
     }
-  })
+    updateWidth()
+    window.addEventListener('resize', updateWidth)
+    return () => {
+      window.removeEventListener('resize', updateWidth)
+    }
+  }, [])
   return (
     <PaperCardScrollContainer ref={containerRef}>
       <InnerScrollContainer multiplier={widthMultiplier}>
