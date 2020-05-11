@@ -10,6 +10,7 @@ type PagesManagerProps = {
   cards: CardType[]
   setActiveCardIdx: (index: number) => void
   displayOptions: DisplayOptions
+  activeCardIdx: number
 }
 
 const PaperCardScrollContainer = styled.div`
@@ -62,7 +63,8 @@ const BackPageWrapper = styled(PageWrapper)<{visible: boolean}>`
 export const PagesManager = ({
   cards,
   setActiveCardIdx,
-  displayOptions
+  displayOptions,
+  activeCardIdx
 }: PagesManagerProps) => {
   const [widthMultiplier, setWidthMultiplier] = useState(1)
   const containerRef = useRef<HTMLDivElement | null>(null)
@@ -98,6 +100,7 @@ export const PagesManager = ({
               >
                 <PaperCard
                   offsetIndex={index * CARDS_PER_PAGE}
+                  activeCardIdx={activeCardIdx}
                   cards={cardsOnPage}
                   setActiveCard={setActiveCardIdx}
                   quality={quality}
@@ -109,6 +112,7 @@ export const PagesManager = ({
               >
                 <PaperCard
                   offsetIndex={index * CARDS_PER_PAGE}
+                  activeCardIdx={activeCardIdx}
                   cards={cardsOnPage}
                   setActiveCard={setActiveCardIdx}
                   quality={quality}

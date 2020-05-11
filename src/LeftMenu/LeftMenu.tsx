@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Card, CardType } from '../Card/Card'
+import { CardType } from '../Card/Card'
 import { colors } from '../styles/colors'
 import { DisplayOptions } from '../App'
 
@@ -42,19 +42,7 @@ const CardActionsBar = styled.div`
   margin-bottom: 2em;
 `
 
-const CardContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-`
-
-const CardSizeLimiter = styled.div`
-  width: 281px;
-`
-
-const InputContainer = styled.div`
-  margin-top: 4em;
-`
+const InputContainer = styled.div``
 
 const StyledTextarea = styled.textarea`
   width: 100%;
@@ -160,19 +148,6 @@ export const LeftMenu = ({
             Delete this card
           </button>
         </CardActionsBar>
-        <CardContainer>
-          <CardSizeLimiter>
-            <Card
-              bottom={bottom}
-              top={top}
-              left={left}
-              right={right}
-              type={type}
-              back={false}
-              quality={quality}
-            />
-          </CardSizeLimiter>
-        </CardContainer>
         <InputContainer>
           <StyledTextarea
             name='bottom'

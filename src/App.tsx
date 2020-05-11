@@ -143,6 +143,7 @@ const App = () => {
           cards={cards}
           setActiveCardIdx={setActiveCardIdx}
           displayOptions={displayOptions}
+          activeCardIdx={activeCardIdx}
         />
       </TabletDesktopWrapper>
     </AppContainer>

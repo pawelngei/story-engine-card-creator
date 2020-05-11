@@ -5,7 +5,8 @@ import { Card, CardType } from '../Card/Card'
 type PaperCardProps = {
   cards: CardType[]
   setActiveCard: (index: number) => void
-  offsetIndex?: number
+  offsetIndex: number
+  activeCardIdx: number
   backs?: boolean
   quality: string
 }
@@ -51,6 +52,7 @@ export const PaperCard = ({
   cards,
   setActiveCard,
   offsetIndex = 0,
+  activeCardIdx,
   quality,
   backs,
 }: PaperCardProps) => {
@@ -63,7 +65,12 @@ export const PaperCard = ({
             key={`cardwrapper-${index}`}
             onClick={() => setActiveCard(offsetIndex + index)}
           >
-            <Card quality={quality} back={!!backs} {...card} />
+            <Card
+              quality={quality}
+              back={!!backs}
+              selected={activeCardIdx === (index + offsetIndex)}
+              {...card}
+            />
           </CardWrapper>
         ))}
       </PrintableArea>

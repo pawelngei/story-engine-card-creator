@@ -14,9 +14,15 @@ export type CardType = {
 type CardProps = CardType & {
   back: boolean
   quality: string
+  selected: boolean
 }
 
-const CardContainer = styled.div<{color?: string}>`
+type CardContainerProps = {
+  color: string
+  selected: boolean
+}
+
+const CardContainer = styled.div<CardContainerProps>`
   width: 100%;
   padding-top: 100%;
   border: 1px solid black;
@@ -25,6 +31,15 @@ const CardContainer = styled.div<{color?: string}>`
   color: black;
   position: relative;
   ${({ color }) => color ? `color: ${ color };` : ''}
+  ${({ selected }) => selected ? `
+    border: 3px solid ${ colors.gold };
+    margin: -3px;
+    z-index: 1;
+    @media print {
+      border: 1px solid black;
+      margin: -1px;
+    };
+  ` : ''}
 `
 
 const SideText = styled.div`
@@ -95,13 +110,14 @@ export const Card = ({
   right,
   type,
   quality,
-  back
+  back,
+  selected
 }: CardProps) => {
   const color = quality === 'dark' ? colors.white : colors.black
   const cardFace = back ? 'back' : 'front'
   const backgroundSrc = backgroundsLibrary[cardFace][quality][type]
   return (
-    <CardContainer color={color}>
+    <CardContainer color={color} selected={selected}>
       <StyledBackImage src={backgroundSrc} />
       <BottomContainer>
         <PaddedSideText>
