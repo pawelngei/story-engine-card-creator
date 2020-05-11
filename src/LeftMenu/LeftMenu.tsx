@@ -56,7 +56,7 @@ const InputContainer = styled.div`
   margin-top: 4em;
 `
 
-const StyledInput = styled.input`
+const StyledTextarea = styled.textarea`
   width: 100%;
 `
 
@@ -100,7 +100,7 @@ export const LeftMenu = ({
 }: LeftMenuProps) => {
   const { top, bottom, left, right, type } = card
   const setCardValue = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    event: React.ChangeEvent<HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const value = event.target.value
     const key = event.target.name
@@ -174,25 +174,25 @@ export const LeftMenu = ({
           </CardSizeLimiter>
         </CardContainer>
         <InputContainer>
-          <StyledInput
+          <StyledTextarea
             name='bottom'
             placeholder='bottom'
             value={bottom}
             onChange={e => setCardValue(e)}
           />
-          <StyledInput
+          <StyledTextarea
             name='top'
             placeholder='top'
             value={top}
             onChange={e => setCardValue(e)}
           />
-          <StyledInput
+          <StyledTextarea
             name='left'
             placeholder='left'
             value={left}
             onChange={e => setCardValue(e)}
           />
-          <StyledInput
+          <StyledTextarea
             name='right'
             placeholder='right'
             value={right}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import styled from 'styled-components'
 import { colors } from '../styles/colors'
 import { backgroundsLibrary } from './backgrounds'
@@ -80,6 +80,12 @@ const StyledBackImage = styled.img`
   bottom: 0;
 `
 
+const displayNewLines = (text: string) => {
+  return text.split('\n').map((item, key) => {
+    return <Fragment key={key}>{item}<br/></Fragment>
+  })
+}
+
 export const Card = ({
   bottom,
   left,
@@ -97,25 +103,25 @@ export const Card = ({
       <StyledBackImage src={backgroundSrc} />
       <BottomContainer>
         <PaddedSideText>
-          {bottom}
+          {displayNewLines(bottom)}
         </PaddedSideText>
       </BottomContainer>
       {left && (
         <LeftContainer>
           <PaddedSideText>
-            {left}
+            {displayNewLines(left)}
           </PaddedSideText>
         </LeftContainer>
       )}
       <TopContainer>
         <PaddedSideText>
-          {top}
+          {displayNewLines(top)}
         </PaddedSideText>
       </TopContainer>
       {right && (
         <RightContainer>
           <PaddedSideText>
-            {right}
+            {displayNewLines(right)}
           </PaddedSideText>
         </RightContainer>
       )}
