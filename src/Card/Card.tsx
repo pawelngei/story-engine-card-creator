@@ -32,7 +32,7 @@ const SideText = styled.div`
   text-align: center;
   width: 100%;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   height: 20%;
   overflow: hidden;
@@ -46,7 +46,7 @@ const BottomContainer = styled(SideText)`
 `
 
 const LeftContainer = styled(SideText)`
-  top: -2.5%;
+  top: 0;
   left: 5%;
   transform: rotate(90deg) translateX(-3em);
   transform-origin: bottom left;
@@ -59,7 +59,7 @@ const TopContainer = styled(SideText)`
 `
 
 const RightContainer = styled(SideText)`
-  top: -2.5%;
+  top: 0;
   right: 5%;
   transform: rotate(270deg) translateX(3em);
   transform-origin: bottom right;
