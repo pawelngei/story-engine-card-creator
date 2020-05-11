@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Button from '@material-ui/core/Button'
 import { CardType } from '../Card/Card'
 import { colors } from '../styles/colors'
 import { DisplayOptions } from '../App'
@@ -102,13 +103,39 @@ export const LeftMenu = ({
     <LeftMenuContainer>
       <Inner>
         <PageActionsBar>
-          <button onClick={() => clearCards()}>Clear Cards</button>
-          <button onClick={() => window.print()}>Print Cards</button>
-          <button onClick={() => exportCards()}>Export Cards</button>
-          <ActionsLine>
-            Import:
-            <input type="file" name="file" onChange={e => importCards(e)}/>
-          </ActionsLine>
+          <Button 
+            variant="contained"
+            color="primary"
+            onClick={() => clearCards()}
+          >
+            Clear Cards
+          </Button>
+          <Button 
+            variant="contained"
+            color="primary"
+            onClick={() => window.print()}
+          >
+            Print Cards
+          </Button>
+          <Button 
+            variant="contained"
+            color="primary"
+            onClick={() => exportCards()}
+          >
+            Export Cards
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            component="label"
+          >
+            Import Cards
+            <input
+              type="file"
+              style={{ display: "none" }}
+              onChange={e => importCards(e)}
+            />
+          </Button>
           <ActionsLine>
             <input
               type="checkbox"
@@ -141,12 +168,20 @@ export const LeftMenu = ({
           </ActionsLine>
         </PageActionsBar>
         <CardActionsBar>
-          <button onClick={() => createNewCard()}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => createNewCard()}
+          >
             Create new card
-          </button>
-          <button onClick={() => deleteCard()}>
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => deleteCard()}
+          >
             Delete this card
-          </button>
+          </Button>
         </CardActionsBar>
         <InputContainer>
           <StyledTextarea
