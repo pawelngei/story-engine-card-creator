@@ -7,7 +7,7 @@ type PaperCardProps = {
   setActiveCard: (index: number) => void
   offsetIndex?: number
   backs?: boolean
-  backQuality?: string
+  quality: string
 }
 
 const PaperContainer = styled.div`
@@ -36,10 +36,10 @@ const CardWrapper = styled.div`
   width: 33.33%;
 `
 
-const makeBack = (type: string) => {
+const makeBack = (card: CardType, type: string) => {
   const name = type.toUpperCase()
   return {
-    type,
+    type: card.type,
     top: name,
     bottom: name,
     left: name,
@@ -51,10 +51,10 @@ export const PaperCard = ({
   cards,
   setActiveCard,
   offsetIndex = 0,
-  backQuality,
+  quality,
   backs,
 }: PaperCardProps) => {
-  const displayedCards = backs ? cards.map(c => makeBack(c.type)) : cards
+  const displayedCards = backs ? cards.map(c => makeBack(c, '')) : cards
   return (
     <PaperContainer>
       <PrintableArea reversed={!!backs}>
@@ -63,7 +63,7 @@ export const PaperCard = ({
             key={`cardwrapper-${index}`}
             onClick={() => setActiveCard(offsetIndex + index)}
           >
-            <Card backQuality={backQuality} {...card} />
+            <Card quality={quality} back={!!backs} {...card} />
           </CardWrapper>
         ))}
       </PrintableArea>

@@ -81,10 +81,10 @@ const cardTypes = [
   'engine'
 ]
 
-const backQualityOptions = [
-  'black',
-  'color',
-  'img-color'
+const qualityOptions = [
+  'white',
+  'light',
+  'dark'
 ]
 
 export const LeftMenu = ({
@@ -109,7 +109,7 @@ export const LeftMenu = ({
       [key]: value
     })
   }
-  const { displayBacks, backQuality } = displayOptions
+  const { displayBacks, quality } = displayOptions
   return (
     <LeftMenuContainer>
       <Inner>
@@ -139,14 +139,14 @@ export const LeftMenu = ({
           <ActionsLine>
             Card Back Quality:
             <select
-              name='backQuality'
-              value={backQuality}
+              name='quality'
+              value={quality}
               onChange={e => setDisplayOptions({
                 ...displayOptions,
-                backQuality: e.target.value
+                quality: e.target.value
               })}
             >
-              {backQualityOptions.map((quality, i) => (
+              {qualityOptions.map((quality, i) => (
                 <option key={`select-back-${i}`} value={quality}>{quality}</option>
               ))}
             </select>
@@ -168,6 +168,8 @@ export const LeftMenu = ({
               left={left}
               right={right}
               type={type}
+              back={false}
+              quality={quality}
             />
           </CardSizeLimiter>
         </CardContainer>

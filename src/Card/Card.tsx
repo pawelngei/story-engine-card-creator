@@ -1,16 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { colors } from '../styles/colors'
-import { ReactComponent as AnchorSvg } from './anchor.svg'
-import { ReactComponent as MaskSvg } from './mask.svg'
-import { ReactComponent as PersonSvg } from './person.svg'
-import { ReactComponent as CogSvg } from './cog.svg'
-import { ReactComponent as StormSvg } from './storm.svg'
-import AgentHQ from './backs/back-agent.jpg'
-import AnchorHQ from './backs/back-anchor.jpg'
-import AspectHQ from './backs/back-aspect.jpg'
-import ConflictHQ from './backs/back-conflict.jpg'
-import EngineHQ from './backs/back-engine.jpg'
+import { backgroundsLibrary } from './backgrounds'
 
 export type CardType = {
   bottom: string
@@ -21,21 +12,9 @@ export type CardType = {
 }
 
 type CardProps = CardType & {
-  backQuality?: string
+  back: boolean
+  quality: string
 }
-
-type ImageDictionaryType = {
-  [key: string]: string
-}
-
-const hqImageDictionary: ImageDictionaryType = {
-  agent: AgentHQ,
-  anchor: AnchorHQ,
-  aspect: AspectHQ,
-  conflict: ConflictHQ,
-  engine: EngineHQ
-}
-
 
 const CardContainer = styled.div<{color?: string}>`
   width: 100%;
@@ -91,26 +70,6 @@ const PaddedSideText = styled.div`
   padding: 0 12.5%;
 `
 
-const SymbolContainer = styled.div`
-  position: absolute;
-  height: 30%;
-  width: 30%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-`
-
-const StyledIcon = styled.svg`
-  width: 100%;
-  height: 100%;
-`
-
-const AnchorIcon = StyledIcon.withComponent(AnchorSvg)
-const MaskIcon = StyledIcon.withComponent(MaskSvg)
-const PersonIcon = StyledIcon.withComponent(PersonSvg)
-const CogIcon = StyledIcon.withComponent(CogSvg)
-const StormIcon = StyledIcon.withComponent(StormSvg)
-
 const StyledBackImage = styled.img`
   position: absolute;
   width: 100%;
@@ -121,26 +80,21 @@ const StyledBackImage = styled.img`
   bottom: 0;
 `
 
-const ImageCard = ({ type }: { type: string }) => {
-  return (
-    <CardContainer>
-      <StyledBackImage src={hqImageDictionary[type]} />
-    </CardContainer>
-  )
-}
-
-const TextCard = ({
+export const Card = ({
   bottom,
   left,
   top,
   right,
   type,
-  backQuality
+  quality,
+  back
 }: CardProps) => {
-  const alt = 'Icons made by https://www.flaticon.com/authors/freepik Freepik from https://www.flaticon.com/'
-  const color = backQuality === 'color' ? colors[type] : colors.black
+  const color = quality === 'dark' ? colors.white : colors.black
+  const cardFace = back ? 'back' : 'front'
+  const backgroundSrc = backgroundsLibrary[cardFace][quality][type]
   return (
     <CardContainer color={color}>
+      <StyledBackImage src={backgroundSrc} />
       <BottomContainer>
         <PaddedSideText>
           {bottom}
@@ -165,20 +119,6 @@ const TextCard = ({
           </PaddedSideText>
         </RightContainer>
       )}
-      <SymbolContainer title={alt}>
-        {type === 'agent' && <PersonIcon />}
-        {type === 'anchor' && <AnchorIcon />}
-        {type === 'aspect' && <MaskIcon />}
-        {type === 'conflict' && <StormIcon />}
-        {type === 'engine' && <CogIcon />}
-      </SymbolContainer>
     </CardContainer>
   )
-}
-
-export const Card = (props: CardProps) => {
-  if (props?.backQuality === 'img-color') {
-    return <ImageCard type={props.type} />
-  }
-  return <TextCard {...props} />
 }

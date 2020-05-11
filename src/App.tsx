@@ -7,8 +7,8 @@ import styled from 'styled-components'
 import { exportCSV, importCSV } from './utils/csv'
 
 export type DisplayOptions = {
-  backQuality: string
-  displayBacks: boolean
+  displayBacks: boolean,
+  quality: string
 }
 
 const AppContainer = styled.div`
@@ -46,7 +46,7 @@ const sampleCard = {
 
 const defaultOptions = {
   displayBacks: false,
-  backQuality: 'black'
+  quality: 'white'
 }
 
 const App = () => {
@@ -149,4 +149,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default App

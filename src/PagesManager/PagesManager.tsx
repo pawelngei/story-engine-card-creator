@@ -66,7 +66,7 @@ export const PagesManager = ({
 }: PagesManagerProps) => {
   const [widthMultiplier, setWidthMultiplier] = useState(1)
   const containerRef = useRef<HTMLDivElement | null>(null)
-  const { displayBacks, backQuality } = displayOptions
+  const { displayBacks, quality } = displayOptions
   const numberOfPages = Math.ceil(cards.length / CARDS_PER_PAGE)
   const pages = Array.from(Array(numberOfPages).keys()).map(i => {
     return cards.slice(i*CARDS_PER_PAGE, (i+1)*CARDS_PER_PAGE)
@@ -100,6 +100,7 @@ export const PagesManager = ({
                   offsetIndex={index * CARDS_PER_PAGE}
                   cards={cardsOnPage}
                   setActiveCard={setActiveCardIdx}
+                  quality={quality}
                 />
               </PageWrapper>
               <BackPageWrapper
@@ -110,7 +111,7 @@ export const PagesManager = ({
                   offsetIndex={index * CARDS_PER_PAGE}
                   cards={cardsOnPage}
                   setActiveCard={setActiveCardIdx}
-                  backQuality={backQuality}
+                  quality={quality}
                   backs
                 />
               </BackPageWrapper>
