@@ -113,6 +113,7 @@ const App = () => {
     const file = e.target?.files?.[0]
     file?.text().then(text => {
       try {
+        console.log(importCSV(text))
         setAndSaveCards(importCSV(text))
       } catch (e) {
         alert(`Wrong file imported - ${e}`)

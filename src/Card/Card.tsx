@@ -81,13 +81,16 @@ const RightContainer = styled(SideText)`
 `
 
 const PaddedSideText = styled.div`
+  -webkit-print-color-adjust: exact;
   width: 100%;
   padding: 0 12.5%;
   font-family: 'Josefin Sans', sans-serif;
-  font-weight: 600;
+  text-transform: uppercase;
+  font-weight: 700;
 `
 
 const StyledBackImage = styled.img`
+  -webkit-print-color-adjust: exact;
   position: absolute;
   width: 100%;
   height: 100%;
