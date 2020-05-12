@@ -99,6 +99,7 @@ export const LeftMenu = ({
     })
   }
   const { displayBacks, quality } = displayOptions
+  const displayLeftRifght = ['engine', 'conflict'].indexOf(type) === -1
   return (
     <LeftMenuContainer>
       <Inner>
@@ -184,6 +185,15 @@ export const LeftMenu = ({
           </Button>
         </CardActionsBar>
         <InputContainer>
+          <select
+            name='type'
+            value={type}
+            onChange={e => setCardValue(e)}
+          >
+            {cardTypes.map((type, i) => (
+              <option key={`select-${i}`} value={type}>{type}</option>
+            ))}
+          </select>
           <StyledTextarea
             name='bottom'
             placeholder='bottom'
@@ -196,27 +206,22 @@ export const LeftMenu = ({
             value={top}
             onChange={e => setCardValue(e)}
           />
-          <StyledTextarea
-            name='left'
-            placeholder='left'
-            value={left}
-            onChange={e => setCardValue(e)}
-          />
-          <StyledTextarea
-            name='right'
-            placeholder='right'
-            value={right}
-            onChange={e => setCardValue(e)}
-          />
-          <select
-            name='type'
-            value={type}
-            onChange={e => setCardValue(e)}
-          >
-            {cardTypes.map((type, i) => (
-              <option key={`select-${i}`} value={type}>{type}</option>
-            ))}
-          </select>
+          {displayLeftRifght ? (
+            <>
+              <StyledTextarea
+                name='left'
+                placeholder='left'
+                value={left}
+                onChange={e => setCardValue(e)}
+              />
+              <StyledTextarea
+                name='right'
+                placeholder='right'
+                value={right}
+                onChange={e => setCardValue(e)}
+              />
+            </>
+          ) : null}
         </InputContainer>
       </Inner>
     </LeftMenuContainer>

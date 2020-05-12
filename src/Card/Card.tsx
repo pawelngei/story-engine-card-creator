@@ -42,7 +42,7 @@ const CardContainer = styled.div<CardContainerProps>`
   ` : ''}
 `
 
-const SideText = styled.div`
+const SideText = styled.div<{ twoSectorSetup: boolean }>`
   position: absolute;
   text-align: center;
   width: 100%;
@@ -53,6 +53,12 @@ const SideText = styled.div`
   overflow: hidden;
   line-height: 1em;
   font-family: 'Ubuntu';
+  ${({ twoSectorSetup }) => twoSectorSetup ? `
+    height: 30%;
+    > div {
+      padding: 0;
+    }
+  ` : ''}
 `
 
 const BottomContainer = styled(SideText)`
@@ -119,28 +125,29 @@ export const Card = ({
   const color = quality === 'dark' ? colors.white : colors.black
   const cardFace = back ? 'back' : 'front'
   const backgroundSrc = backgroundsLibrary[cardFace][quality][type]
+  const twoSectorSetup = ['conflict', 'engine'].indexOf(type) !== -1
   return (
     <CardContainer color={color} selected={selected}>
       <StyledBackImage src={backgroundSrc} />
-      <BottomContainer>
+      <BottomContainer twoSectorSetup={twoSectorSetup}>
         <PaddedSideText>
           {displayNewLines(bottom)}
         </PaddedSideText>
       </BottomContainer>
       {left && (
-        <LeftContainer>
+        <LeftContainer twoSectorSetup={twoSectorSetup}>
           <PaddedSideText>
             {displayNewLines(left)}
           </PaddedSideText>
         </LeftContainer>
       )}
-      <TopContainer>
+      <TopContainer twoSectorSetup={twoSectorSetup}>
         <PaddedSideText>
           {displayNewLines(top)}
         </PaddedSideText>
       </TopContainer>
       {right && (
-        <RightContainer>
+        <RightContainer twoSectorSetup={twoSectorSetup}>
           <PaddedSideText>
             {displayNewLines(right)}
           </PaddedSideText>
