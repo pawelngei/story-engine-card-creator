@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button'
 import { CardType } from '../Card/Card'
 import { colors } from '../styles/colors'
 import {
-  cardTypes,
+  typeOptions,
   twoSectionCards,
   Quality,
   frontQualityOptions,
@@ -52,9 +52,16 @@ const InnerContainer = styled.div`
   }
 `
 
-const HeaderContainer = styled.div`
+const SectionContainer = styled.div`
+  padding: 28px 0;
   width: 100%;
   border-bottom: 2px solid ${colors.white};
+  &:first-of-type {
+    padding-top: 0;
+  }
+  &:last-of-type {
+    padding-bottom: 0;
+  }
 `
 
 const LogoContainer = styled.div`
@@ -76,14 +83,22 @@ const Logo = styled.img`
 
 const InfoContainer = styled.div`
   font-size: 1.2em;
+`
+
+const Subtitle = styled.h2`
+  margin-top: 0;
+  margin-bottom: 20px;
+`
+
+const ButtonLine = styled.div`
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 28px;
 `
 
-const CardActionsBar = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 2em;
+const SelectLine = styled.div`
+  font-size: 1.2em;
+  margin-bottom: 8px;
 `
 
 const InputContainer = styled.div``
@@ -104,7 +119,6 @@ const PageActionsBar = styled.div`
 `
 
 const ActionsLine = styled.div`
-  padding-top: 1em;
   width: 100%;
 `
 
@@ -139,7 +153,7 @@ export const LeftMenu = ({
   return (
     <LeftMenuContainer>
       <InnerContainer>
-        <HeaderContainer>
+        <SectionContainer>
           <LogoContainer>
             <Logo src={LogoPng} />
             <Title>
@@ -153,7 +167,73 @@ export const LeftMenu = ({
           <InfoContainer>
             Learn more about <em>The Story Engine</em> at <a href="https://storyenginedeck.com/">storyenginedeck.com</a>.
           </InfoContainer>
-        </HeaderContainer>
+        </SectionContainer>
+        <SectionContainer>
+          <Subtitle>Create Cards</Subtitle>
+          <ButtonLine>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => createNewCard()}
+            >
+              Create new card
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => deleteCard()}
+            >
+              Delete this card
+            </Button>
+          </ButtonLine>
+          <SelectLine>
+            Card type:&nbsp;
+            <select
+              name='type'
+              value={type}
+              onChange={e => setCardValue(e)}
+            >
+              {typeOptions.map((option, i) => (
+                <option
+                  key={`select-${i}`}
+                  value={option.value}
+                >
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </SelectLine>
+          <InputContainer>
+            <StyledTextarea
+              name='bottom'
+              placeholder='bottom'
+              value={bottom}
+              onChange={e => setCardValue(e)}
+            />
+            <StyledTextarea
+              name='top'
+              placeholder='top'
+              value={top}
+              onChange={e => setCardValue(e)}
+            />
+            {displayLeftRifght ? (
+              <>
+                <StyledTextarea
+                  name='left'
+                  placeholder='left'
+                  value={left}
+                  onChange={e => setCardValue(e)}
+                />
+                <StyledTextarea
+                  name='right'
+                  placeholder='right'
+                  value={right}
+                  onChange={e => setCardValue(e)}
+                />
+              </>
+            ) : null}
+          </InputContainer>
+        </SectionContainer>
         <PageActionsBar>
           <Button 
             variant="contained"
@@ -244,61 +324,6 @@ export const LeftMenu = ({
               </select>
           </ActionsLine>
         </PageActionsBar>
-        <CardActionsBar>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => createNewCard()}
-          >
-            Create new card
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => deleteCard()}
-          >
-            Delete this card
-          </Button>
-        </CardActionsBar>
-        <InputContainer>
-          <select
-            name='type'
-            value={type}
-            onChange={e => setCardValue(e)}
-          >
-            {cardTypes.map((type, i) => (
-              <option key={`select-${i}`} value={type}>{type}</option>
-            ))}
-          </select>
-          <StyledTextarea
-            name='bottom'
-            placeholder='bottom'
-            value={bottom}
-            onChange={e => setCardValue(e)}
-          />
-          <StyledTextarea
-            name='top'
-            placeholder='top'
-            value={top}
-            onChange={e => setCardValue(e)}
-          />
-          {displayLeftRifght ? (
-            <>
-              <StyledTextarea
-                name='left'
-                placeholder='left'
-                value={left}
-                onChange={e => setCardValue(e)}
-              />
-              <StyledTextarea
-                name='right'
-                placeholder='right'
-                value={right}
-                onChange={e => setCardValue(e)}
-              />
-            </>
-          ) : null}
-        </InputContainer>
       </InnerContainer>
     </LeftMenuContainer>
   )

@@ -1,9 +1,13 @@
-export const cardTypes = [
-  'agent',
-  'anchor',
-  'aspect',
-  'conflict',
-  'engine'
+type Type = 'agent' | 'anchor' | 'aspect' | 'conflict' | 'engine'
+
+type TypeOption = { label: string, value: Type }
+
+export const typeOptions: TypeOption[] = [
+  { label: 'Agent', value: 'agent' },
+  { label: 'Anchor', value: 'anchor' },
+  { label: 'Aspect', value: 'aspect' },
+  { label: 'Conflict', value: 'conflict' },
+  { label: 'Engine', value: 'engine' }
 ]
 
 export const twoSectionCards = ['conflict', 'engine']
