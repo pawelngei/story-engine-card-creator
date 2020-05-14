@@ -14,7 +14,6 @@ import { DisplayOptions } from '../App'
 import { createMuiTheme } from '@material-ui/core/styles'
 import { ThemeProvider } from '@material-ui/styles'
 import LogoPng from './logo.png'
-import { Color } from '@material-ui/core'
 
 type LeftMenuProps = {
   card: CardType,
@@ -57,6 +56,9 @@ const LeftMenuContainer = styled.div`
   @media print {
     display: none;
   }
+  @media (max-width: 1279px) {
+    width: 600px;
+  }
 `
 
 const InnerContainer = styled.div`
@@ -70,6 +72,9 @@ const InnerContainer = styled.div`
   a {
     text-decoration: none;
     color: ${ colors.gold };
+  }
+  @media (max-width: 1279px) {
+    padding: 40px;
   }
 `
 
