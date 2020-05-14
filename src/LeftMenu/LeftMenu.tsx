@@ -136,7 +136,10 @@ const LinksSection = styled.div`
 `
 
 const LinksList = styled.ul`
-  margin: 0;
+  margin: 8px 0 0;
+  > li {
+    margin-top: 4px;
+  }
 `
 
 export const LeftMenu = ({
@@ -348,8 +351,7 @@ export const LeftMenu = ({
         </SectionContainer>
         <SectionContainer>
           <TextContainer>
-            Webapp developed by Paweł Ngei. <i>The Story Engine Deck</i>
-            created by Peter Chiykowski.
+            Webapp developed by Paweł Ngei. <i>The Story Engine Deck</i> created by Peter Chiykowski.
           </TextContainer>
           <LinksContainer>
             <LinksSection>
