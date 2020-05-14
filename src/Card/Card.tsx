@@ -48,7 +48,7 @@ const SideText = styled.div<{ twoSectorSetup: boolean }>`
   text-align: center;
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   height: 20%;
   overflow: hidden;
@@ -56,6 +56,7 @@ const SideText = styled.div<{ twoSectorSetup: boolean }>`
   font-family: 'Ubuntu';
   ${({ twoSectorSetup }) => twoSectorSetup ? `
     height: 30%;
+    align-items: center;
     > div {
       padding: 0;
     }
@@ -64,25 +65,25 @@ const SideText = styled.div<{ twoSectorSetup: boolean }>`
 
 const BottomContainer = styled(SideText)`
   left: 0;
-  bottom: 5%;
+  bottom: 7%;
 `
 
 const LeftContainer = styled(SideText)`
   top: 0;
-  left: 5%;
+  left: 7%;
   transform: rotate(90deg) translateX(-3em);
   transform-origin: bottom left;
 `
 
 const TopContainer = styled(SideText)`
   left: 0;
-  top: 5%;
+  top: 7%;
   transform: rotate(180deg);
 `
 
 const RightContainer = styled(SideText)`
   top: 0;
-  right: 5%;
+  right: 7%;
   transform: rotate(270deg) translateX(3em);
   transform-origin: bottom right;
 `
