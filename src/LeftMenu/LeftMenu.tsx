@@ -11,7 +11,10 @@ import {
   backQualityOptions
 } from '../utils/constants'
 import { DisplayOptions } from '../App'
+import { createMuiTheme } from '@material-ui/core/styles'
+import { ThemeProvider } from '@material-ui/styles'
 import LogoPng from './logo.png'
+import { Color } from '@material-ui/core'
 
 type LeftMenuProps = {
   card: CardType,
@@ -24,6 +27,24 @@ type LeftMenuProps = {
   displayOptions: DisplayOptions
   setDisplayOptions: (displayOptions: DisplayOptions) => void
 }
+
+const theme = createMuiTheme({
+  typography: {
+    button: {
+      fontSize: '1em',
+      fontFamily: 'Josefin Sans',
+      fontWeight: 700,
+    },
+  },
+  palette: {
+    primary: {
+      main: colors.gold,
+      contrastText: colors.white
+    },
+    contrastThreshold: 3,
+    tonalOffset: 0.2,
+  },
+});
 
 const LeftMenuContainer = styled.div`
   position: relative;
@@ -172,226 +193,228 @@ export const LeftMenu = ({
   const displayLeftRifght = twoSectionCards.indexOf(type) === -1
   return (
     <LeftMenuContainer>
-      <InnerContainer>
-        <SectionContainer>
-          <LogoContainer>
-            <Logo src={LogoPng} />
-            <Title>
-              <i>
-                THE STORY ENGINE
-              </i>
-              <br />
-              CARD CREATOR
-            </Title>
-          </LogoContainer>
-          <TextContainer>
-            Learn more about <i>The Story Engine</i> at <a href="https://storyenginedeck.com/">storyenginedeck.com</a>.
-          </TextContainer>
-        </SectionContainer>
-        <SectionContainer>
-          <Subtitle>Create Cards</Subtitle>
-          <ButtonLine>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => createNewCard()}
-            >
-              Create new card
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => deleteCard()}
-            >
-              Delete this card
-            </Button>
-          </ButtonLine>
-          <SelectLine>
-            Card type:&nbsp;
-            <select
-              name='type'
-              value={type}
-              onChange={e => setCardValue(e)}
-            >
-              {typeOptions.map((option, i) => (
-                <option
-                  key={`select-${i}`}
-                  value={option.value}
-                >
-                  {option.label}
-                </option>
-              ))}
-            </select>
-          </SelectLine>
-          <InputContainer>
-            <StyledTextarea
-              name='bottom'
-              placeholder='bottom'
-              value={bottom}
-              onChange={e => setCardValue(e)}
-            />
-            <StyledTextarea
-              name='top'
-              placeholder='top'
-              value={top}
-              onChange={e => setCardValue(e)}
-            />
-            {displayLeftRifght ? (
-              <>
-                <StyledTextarea
-                  name='left'
-                  placeholder='left'
-                  value={left}
-                  onChange={e => setCardValue(e)}
-                />
-                <StyledTextarea
-                  name='right'
-                  placeholder='right'
-                  value={right}
-                  onChange={e => setCardValue(e)}
-                />
-              </>
-            ) : null}
-          </InputContainer>
-        </SectionContainer>
-        <SectionContainer>
-          <Subtitle>Design Deck</Subtitle>
-          <TextContainer>
-            Card front design:&nbsp;
-            <select
-              name='frontQuality'
-              value={frontQuality}
-              onChange={e => setDisplayOptions({
-                ...displayOptions,
-                frontQuality: e.target.value as Quality
-              })}
-            >
-              {frontQualityOptions.map((option, i) => (
-                <option
-                  key={`select-back-${i}`}
-                  value={option.value}
-                >
-                  {option.label}
-                </option>
-              ))}
-            </select>
-            &nbsp;
-            Card back design:&nbsp;
-            <select
-              name='backQuality'
-              value={backQuality}
-              onChange={e => setDisplayOptions({
-                ...displayOptions,
-                backQuality: e.target.value as Quality
-              })}
-            >
-              {backQualityOptions.map((option, i) => (
-                <option
-                  key={`select-back-${i}`}
-                  value={option.value}
-                >
-                  {option.label}
-                </option>
-              ))}
-            </select>
-          </TextContainer>
-          <TextContainer>
-            <label htmlFor="backs">
-              Display card backs on screen?&nbsp;
-            </label>
-            <input
-              type="checkbox"
-              id="backs"
-              name="backs"
-              checked={displayBacks}
-              onChange={() => setDisplayOptions({
-                ...displayOptions,
-                displayBacks: !displayBacks
-              })}
-            />
-          </TextContainer>
-        </SectionContainer>
-        <SectionContainer>
-          <Subtitle>Manage Deck</Subtitle>
-          <NoPadButtonLine>
-            <Button 
-              variant="contained"
-              color="primary"
-              onClick={() => window.print()}
-            >
-              Print Cards
-            </Button>
-            <Button 
-              variant="contained"
-              color="primary"
-              onClick={() => clearCards()}
-            >
-              Clear Cards
-            </Button>
-            <Button 
-              variant="contained"
-              color="primary"
-              onClick={() => exportCards()}
-            >
-              Export Cards
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              component="label"
-            >
-              Import Cards
-              <input
-                type="file"
-                style={{ display: "none" }}
-                onChange={e => importCards(e)}
+      <ThemeProvider theme={theme}>
+        <InnerContainer>
+          <SectionContainer>
+            <LogoContainer>
+              <Logo src={LogoPng} />
+              <Title>
+                <i>
+                  THE STORY ENGINE
+                </i>
+                <br />
+                CARD CREATOR
+              </Title>
+            </LogoContainer>
+            <TextContainer>
+              Learn more about <i>The Story Engine</i> at <a href="https://storyenginedeck.com/">storyenginedeck.com</a>.
+            </TextContainer>
+          </SectionContainer>
+          <SectionContainer>
+            <Subtitle>Create Cards</Subtitle>
+            <ButtonLine>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => createNewCard()}
+              >
+                Create new card
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => deleteCard()}
+              >
+                Delete this card
+              </Button>
+            </ButtonLine>
+            <SelectLine>
+              Card type:&nbsp;
+              <select
+                name='type'
+                value={type}
+                onChange={e => setCardValue(e)}
+              >
+                {typeOptions.map((option, i) => (
+                  <option
+                    key={`select-${i}`}
+                    value={option.value}
+                  >
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </SelectLine>
+            <InputContainer>
+              <StyledTextarea
+                name='bottom'
+                placeholder='bottom'
+                value={bottom}
+                onChange={e => setCardValue(e)}
               />
-            </Button>
-          </NoPadButtonLine>
-        </SectionContainer>
-        <SectionContainer>
-          <TextContainer>
-            Webapp developed by Paweł Ngei. <i>The Story Engine Deck</i> created by Peter Chiykowski.
-          </TextContainer>
-          <LinksContainer>
-            <LinksSection>
-              <b>More from Peter:</b>
-              <LinksList>
-                <li>Card creation guide</li>
-                <li>Deck tutorial</li>
-                <li>Buy <i>The Story Engine</i></li>
-              </LinksList>
-            </LinksSection>
-            <LinksSection>
-              <b>More from Paweł:</b>
-              <LinksList>
-                <li>
-                  <a href='https://alxd.org/'>solarpunk | hacker blog</a>
-                </li>
-                <li>
-                  <a href='https://github.com/pawelngei'>
-                    This project on Github
-                  </a>
-                </li>
-                <li>
-                  <a href='https://www.linkedin.com/in/paul-ngei-19227983/'>
-                    LinkedIn
-                  </a>
-                </li>
-              </LinksList>
-            </LinksSection>
-          </LinksContainer>
-          <EmTextContainer>
-            The Story Engine and The Story Engine logo are trademarks of
-            Peter Chiykowski. The Story Engine is not related to Story Engine,
-            which is a Precis Intermedia trademark and game (
-            <a href='https://pigames.net/'>pigames.net</a>). 
-          </EmTextContainer>
-          <EmTextContainer>
-            This webapp may not be used for commercial purposes.
-          </EmTextContainer>
-        </SectionContainer>
-      </InnerContainer>
+              <StyledTextarea
+                name='top'
+                placeholder='top'
+                value={top}
+                onChange={e => setCardValue(e)}
+              />
+              {displayLeftRifght ? (
+                <>
+                  <StyledTextarea
+                    name='left'
+                    placeholder='left'
+                    value={left}
+                    onChange={e => setCardValue(e)}
+                  />
+                  <StyledTextarea
+                    name='right'
+                    placeholder='right'
+                    value={right}
+                    onChange={e => setCardValue(e)}
+                  />
+                </>
+              ) : null}
+            </InputContainer>
+          </SectionContainer>
+          <SectionContainer>
+            <Subtitle>Design Deck</Subtitle>
+            <TextContainer>
+              Card front design:&nbsp;
+              <select
+                name='frontQuality'
+                value={frontQuality}
+                onChange={e => setDisplayOptions({
+                  ...displayOptions,
+                  frontQuality: e.target.value as Quality
+                })}
+              >
+                {frontQualityOptions.map((option, i) => (
+                  <option
+                    key={`select-back-${i}`}
+                    value={option.value}
+                  >
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+              &nbsp;
+              Card back design:&nbsp;
+              <select
+                name='backQuality'
+                value={backQuality}
+                onChange={e => setDisplayOptions({
+                  ...displayOptions,
+                  backQuality: e.target.value as Quality
+                })}
+              >
+                {backQualityOptions.map((option, i) => (
+                  <option
+                    key={`select-back-${i}`}
+                    value={option.value}
+                  >
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </TextContainer>
+            <TextContainer>
+              <label htmlFor="backs">
+                Display card backs on screen?&nbsp;
+              </label>
+              <input
+                type="checkbox"
+                id="backs"
+                name="backs"
+                checked={displayBacks}
+                onChange={() => setDisplayOptions({
+                  ...displayOptions,
+                  displayBacks: !displayBacks
+                })}
+              />
+            </TextContainer>
+          </SectionContainer>
+          <SectionContainer>
+            <Subtitle>Manage Deck</Subtitle>
+            <NoPadButtonLine>
+              <Button 
+                variant="contained"
+                color="primary"
+                onClick={() => window.print()}
+              >
+                Print
+              </Button>
+              <Button 
+                variant="contained"
+                color="primary"
+                onClick={() => clearCards()}
+              >
+                Clear
+              </Button>
+              <Button 
+                variant="contained"
+                color="primary"
+                onClick={() => exportCards()}
+              >
+                Export
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                component="label"
+              >
+                Import
+                <input
+                  type="file"
+                  style={{ display: "none" }}
+                  onChange={e => importCards(e)}
+                />
+              </Button>
+            </NoPadButtonLine>
+          </SectionContainer>
+          <SectionContainer>
+            <TextContainer>
+              Webapp developed by Paweł Ngei. <i>The Story Engine Deck</i> created by Peter Chiykowski.
+            </TextContainer>
+            <LinksContainer>
+              <LinksSection>
+                <b>More from Peter:</b>
+                <LinksList>
+                  <li>Card creation guide</li>
+                  <li>Deck tutorial</li>
+                  <li>Buy <i>The Story Engine</i></li>
+                </LinksList>
+              </LinksSection>
+              <LinksSection>
+                <b>More from Paweł:</b>
+                <LinksList>
+                  <li>
+                    <a href='https://alxd.org/'>solarpunk | hacker blog</a>
+                  </li>
+                  <li>
+                    <a href='https://github.com/pawelngei'>
+                      This project on Github
+                    </a>
+                  </li>
+                  <li>
+                    <a href='https://www.linkedin.com/in/paul-ngei-19227983/'>
+                      LinkedIn
+                    </a>
+                  </li>
+                </LinksList>
+              </LinksSection>
+            </LinksContainer>
+            <EmTextContainer>
+              The Story Engine and The Story Engine logo are trademarks of
+              Peter Chiykowski. The Story Engine is not related to Story Engine,
+              which is a Precis Intermedia trademark and game (
+              <a href='https://pigames.net/'>pigames.net</a>). 
+            </EmTextContainer>
+            <EmTextContainer>
+              This webapp may not be used for commercial purposes.
+            </EmTextContainer>
+          </SectionContainer>
+        </InnerContainer>
+      </ThemeProvider>
     </LeftMenuContainer>
   )
 }
