@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Card, CardType } from '../Card/Card'
 
-type PaperCardProps = {
+type PageProps = {
   cards: CardType[]
   setActiveCard: (index: number) => void
   offsetIndex: number
@@ -48,14 +48,14 @@ const makeBack = (card: CardType, type: string) => {
   }
 }
 
-export const PaperCard = ({
+export const Page = ({
   cards,
   setActiveCard,
   offsetIndex = 0,
   activeCardIdx,
   quality,
   backs,
-}: PaperCardProps) => {
+}: PageProps) => {
   const displayedCards = backs ? cards.map(c => makeBack(c, '')) : cards
   return (
     <PaperContainer>

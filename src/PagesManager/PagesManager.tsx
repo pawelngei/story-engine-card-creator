@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { PaperCard } from '../PaperCard/PaperCard'
+import { Page } from '../Page/Page'
 import { CardType } from '../Card/Card'
 import { DisplayOptions } from '../App'
 
@@ -13,7 +13,7 @@ type PagesManagerProps = {
   activeCardIdx: number
 }
 
-const PaperCardScrollContainer = styled.div`
+const PageScrollContainer = styled.div`
   position: relative;
   width: 100%;
   height: 100vh;
@@ -90,7 +90,7 @@ export const PagesManager = ({
     }
   }, [])
   return (
-    <PaperCardScrollContainer ref={containerRef}>
+    <PageScrollContainer ref={containerRef}>
       <InnerScrollContainer multiplier={widthMultiplier}>
         {pages.map((cardsOnPage, index) => {
           return (
@@ -98,7 +98,7 @@ export const PagesManager = ({
               <PageWrapper
                 key={`front-page-${index}`}
               >
-                <PaperCard
+                <Page
                   offsetIndex={index * CARDS_PER_PAGE}
                   activeCardIdx={activeCardIdx}
                   cards={cardsOnPage}
@@ -110,7 +110,7 @@ export const PagesManager = ({
                 key={`back-page-${index}`}
                 visible={displayBacks}
               >
-                <PaperCard
+                <Page
                   offsetIndex={index * CARDS_PER_PAGE}
                   activeCardIdx={activeCardIdx}
                   cards={cardsOnPage}
@@ -123,6 +123,6 @@ export const PagesManager = ({
           )
         })}
       </InnerScrollContainer>
-    </PaperCardScrollContainer>
+    </PageScrollContainer>
   )
 }
