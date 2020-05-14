@@ -158,7 +158,7 @@ const LinksContainer = styled(TextContainer)`
 const LinksSection = styled.div`
   display: inline-block;
   width: 50%;
-  padding-left: 20px;
+  padding-left: 10px;
 `
 
 const LinksList = styled.ul`
@@ -384,9 +384,21 @@ export const LeftMenu = ({
               <LinksSection>
                 <b>More from Peter:</b>
                 <LinksList>
-                  <li>Card creation guide</li>
-                  <li>Deck tutorial</li>
-                  <li>Buy <i>The Story Engine</i></li>
+                  <li>
+                    <a href='http://storyenginedeck.com/cardcreationguide'>
+                      Card creation guide
+                    </a>
+                  </li>
+                  <li>
+                    <a href='http://storyenginedeck.com/tutorial'>
+                      Deck tutorial
+                    </a>
+                  </li>
+                  <li>
+                    <a href='http://storyenginedeck.com/'>
+                      Buy <i>The Story Engine</i>
+                    </a>
+                  </li>
                 </LinksList>
               </LinksSection>
               <LinksSection>
