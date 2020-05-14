@@ -81,8 +81,12 @@ const Logo = styled.img`
   margin-right: 20px;
 `
 
-const InfoContainer = styled.div`
+const TextContainer = styled.div`
   font-size: 1.2em;
+  margin-bottom: 20px;
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 `
 
 const Subtitle = styled.h2`
@@ -164,9 +168,9 @@ export const LeftMenu = ({
               CARD CREATOR
             </Title>
           </LogoContainer>
-          <InfoContainer>
+          <TextContainer>
             Learn more about <em>The Story Engine</em> at <a href="https://storyenginedeck.com/">storyenginedeck.com</a>.
-          </InfoContainer>
+          </TextContainer>
         </SectionContainer>
         <SectionContainer>
           <Subtitle>Create Cards</Subtitle>
@@ -234,6 +238,63 @@ export const LeftMenu = ({
             ) : null}
           </InputContainer>
         </SectionContainer>
+        <SectionContainer>
+          <Subtitle>Design Deck</Subtitle>
+          <TextContainer>
+            Card front design:&nbsp;
+            <select
+              name='frontQuality'
+              value={frontQuality}
+              onChange={e => setDisplayOptions({
+                ...displayOptions,
+                frontQuality: e.target.value as Quality
+              })}
+            >
+              {frontQualityOptions.map((option, i) => (
+                <option
+                  key={`select-back-${i}`}
+                  value={option.value}
+                >
+                  {option.label}
+                </option>
+              ))}
+            </select>
+            &nbsp;
+            Card back design:&nbsp;
+            <select
+              name='backQuality'
+              value={backQuality}
+              onChange={e => setDisplayOptions({
+                ...displayOptions,
+                backQuality: e.target.value as Quality
+              })}
+            >
+              {backQualityOptions.map((option, i) => (
+                <option
+                  key={`select-back-${i}`}
+                  value={option.value}
+                >
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </TextContainer>
+          <TextContainer>
+            <label htmlFor="backs">
+              Display card backs on screen?&nbsp;
+            </label>
+            <input
+              type="checkbox"
+              id="backs"
+              name="backs"
+              checked={displayBacks}
+              onChange={() => setDisplayOptions({
+                ...displayOptions,
+                displayBacks: !displayBacks
+              })}
+            />
+          </TextContainer>
+        </SectionContainer>
         <PageActionsBar>
           <Button 
             variant="contained"
@@ -268,61 +329,6 @@ export const LeftMenu = ({
               onChange={e => importCards(e)}
             />
           </Button>
-          <ActionsLine>
-            <input
-              type="checkbox"
-              id="backs"
-              name="backs"
-              checked={displayBacks}
-              onChange={() => setDisplayOptions({
-                ...displayOptions,
-                displayBacks: !displayBacks
-              })}
-            />
-            <label htmlFor="backs">
-              Display Card Backs
-            </label>
-          </ActionsLine>
-          <ActionsLine>
-            Card Back Quality:
-            <select
-              name='backQuality'
-              value={backQuality}
-              onChange={e => setDisplayOptions({
-                ...displayOptions,
-                backQuality: e.target.value as Quality
-              })}
-            >
-              {backQualityOptions.map((option, i) => (
-                <option
-                  key={`select-back-${i}`}
-                  value={option.value}
-                >
-                  {option.label}
-                </option>
-              ))}
-            </select>
-          </ActionsLine>
-          <ActionsLine>
-            Card Front Quality:
-              <select
-                name='frontQuality'
-                value={frontQuality}
-                onChange={e => setDisplayOptions({
-                  ...displayOptions,
-                  frontQuality: e.target.value as Quality
-                })}
-              >
-                {frontQualityOptions.map((option, i) => (
-                  <option
-                    key={`select-back-${i}`}
-                    value={option.value}
-                  >
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-          </ActionsLine>
         </PageActionsBar>
       </InnerContainer>
     </LeftMenuContainer>
