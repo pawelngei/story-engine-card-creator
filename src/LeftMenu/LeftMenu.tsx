@@ -86,9 +86,13 @@ export const LeftMenu = ({
   ) => {
     const value = event.target.value
     const key = event.target.name
+    const otherOptions = key === 'type' && twoSectionCards.indexOf(value) !== -1
+      ? { left: '', right: '' }
+      : {}
     setCard({
       ...card,
-      [key]: value
+      [key]: value,
+      ...otherOptions
     })
   }
   const { displayBacks, quality } = displayOptions
