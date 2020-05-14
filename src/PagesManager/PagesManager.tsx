@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Page } from '../Page/Page'
 import { CardType } from '../Card/Card'
 import { DisplayOptions } from '../App'
+import { maxZoom } from '../utils/constants'
 
 const CARDS_PER_PAGE = 12
 
@@ -83,7 +84,7 @@ export const PagesManager = ({
       const paddedWidth = pageWidth * 1.10
       const multiplier = containerWidth / paddedWidth
       if (multiplier) {
-        const maxedMultiplier = multiplier > 1 ? 1 : multiplier
+        const maxedMultiplier = multiplier > maxZoom ? maxZoom : multiplier
         setWidthMultiplier(maxedMultiplier)
       }
     }

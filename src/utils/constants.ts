@@ -48,3 +48,5 @@ export const frontQualityOptions: QualityOption[] = [
   { label: 'Light', value: 'light' },
   { label: 'Minimalist', value: 'minimalist' }
 ]
+
+export const maxZoom = 1.25
