@@ -47,6 +47,9 @@ const CardActionsBar = styled.div`
 const InputContainer = styled.div``
 
 const StyledTextarea = styled.textarea`
+  font-family: 'Josefin Sans', sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
   width: 100%;
 `
 
