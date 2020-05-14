@@ -124,6 +124,21 @@ const StyledTextarea = styled.textarea`
   width: 100%;
 `
 
+const LinksContainer = styled(TextContainer)`
+  display: flex;
+  flex-direction: row;
+`
+
+const LinksSection = styled.div`
+  display: inline-block;
+  width: 50%;
+  padding-left: 20px;
+`
+
+const LinksList = styled.ul`
+  margin: 0;
+`
+
 export const LeftMenu = ({
   card,
   setCard,
@@ -336,6 +351,34 @@ export const LeftMenu = ({
             Webapp developed by Paweł Ngei. <i>The Story Engine Deck</i>
             created by Peter Chiykowski.
           </TextContainer>
+          <LinksContainer>
+            <LinksSection>
+              <b>More from Peter:</b>
+              <LinksList>
+                <li>Card creation guide</li>
+                <li>Deck tutorial</li>
+                <li>Buy <i>The Story Engine</i></li>
+              </LinksList>
+            </LinksSection>
+            <LinksSection>
+              <b>More from Paweł:</b>
+              <LinksList>
+                <li>
+                  <a href='https://alxd.org/'>solarpunk | hacker blog</a>
+                </li>
+                <li>
+                  <a href='https://github.com/pawelngei'>
+                    This project on Github
+                  </a>
+                </li>
+                <li>
+                  <a href='https://www.linkedin.com/in/paul-ngei-19227983/'>
+                    LinkedIn
+                  </a>
+                </li>
+              </LinksList>
+            </LinksSection>
+          </LinksContainer>
           <EmTextContainer>
             The Story Engine and The Story Engine logo are trademarks of
             Peter Chiykowski. The Story Engine is not related to Story Engine,
