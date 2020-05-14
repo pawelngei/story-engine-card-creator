@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Button from '@material-ui/core/Button'
 import { CardType } from '../Card/Card'
 import { colors } from '../styles/colors'
+import { cardTypes, twoSectionCards } from '../utils/constants'
 import { DisplayOptions } from '../App'
 
 type LeftMenuProps = {
@@ -62,14 +63,6 @@ const ActionsLine = styled.div`
   width: 100%;
 `
 
-const cardTypes = [
-  'agent',
-  'anchor',
-  'aspect',
-  'conflict',
-  'engine'
-]
-
 const qualityOptions = [
   'white',
   'light',
@@ -99,7 +92,7 @@ export const LeftMenu = ({
     })
   }
   const { displayBacks, quality } = displayOptions
-  const displayLeftRifght = ['engine', 'conflict'].indexOf(type) === -1
+  const displayLeftRifght = twoSectionCards.indexOf(type) === -1
   return (
     <LeftMenuContainer>
       <Inner>

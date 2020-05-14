@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import styled from 'styled-components'
 import { colors } from '../styles/colors'
+import { twoSectionCards } from '../utils/constants'
 import { backgroundsLibrary } from './backgrounds'
 
 export type CardType = {
@@ -125,7 +126,7 @@ export const Card = ({
   const color = quality === 'dark' ? colors.white : colors.black
   const cardFace = back ? 'back' : 'front'
   const backgroundSrc = backgroundsLibrary[cardFace][quality][type]
-  const twoSectorSetup = ['conflict', 'engine'].indexOf(type) !== -1
+  const twoSectorSetup = twoSectionCards.indexOf(type) !== -1
   return (
     <CardContainer color={color} selected={selected}>
       <StyledBackImage src={backgroundSrc} />
