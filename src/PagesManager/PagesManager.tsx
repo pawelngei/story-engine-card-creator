@@ -14,6 +14,8 @@ type PagesManagerProps = {
 }
 
 const PageScrollContainer = styled.div`
+  display: flex;
+  justify-content: center;
   position: relative;
   width: 100%;
   height: 100vh;
@@ -25,7 +27,6 @@ const PageScrollContainer = styled.div`
 `
 
 const InnerScrollContainer = styled.div<{multiplier: number}>`
-  width: 100%;
   height: 100%;
   transform-origin: top left;
   ${({ multiplier }) => `transform: scale(${multiplier});`}
@@ -79,7 +80,7 @@ export const PagesManager = ({
       const pageWidth = 795.69 // pixels for 210mm, A4
       const paddedWidth = pageWidth * 1.10
       const multiplier = containerWidth / paddedWidth
-      if (multiplier) {
+      if (multiplier && multiplier < 1) {
         setWidthMultiplier(multiplier)
       }
     }
