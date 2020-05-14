@@ -1,6 +1,6 @@
 {
-  "short_name": "Story Engine App",
-  "name": "Story Engine Deckbuilding App",
+  "short_name": "Story Engine",
+  "name": "The Story Engine Card Creator",
   "icons": [
     {
       "src": "favicon.ico",
@@ -15,6 +15,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#ff9900",
+  "background_color": "#33384d"
 }
