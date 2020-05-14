@@ -60,6 +60,7 @@ const SectionContainer = styled.div`
     padding-top: 0;
   }
   &:last-of-type {
+    border-bottom: none;
     padding-bottom: 0;
   }
 `
@@ -89,6 +90,11 @@ const TextContainer = styled.div`
   }
 `
 
+const EmTextContainer = styled(TextContainer)`
+  font-size: 1em;
+  font-style: italic;
+`
+
 const Subtitle = styled.h2`
   margin-top: 0;
   margin-bottom: 20px;
@@ -98,6 +104,10 @@ const ButtonLine = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 28px;
+`
+
+const NoPadButtonLine = styled(ButtonLine)`
+  margin-bottom: 0;
 `
 
 const SelectLine = styled.div`
@@ -111,18 +121,6 @@ const StyledTextarea = styled.textarea`
   font-family: 'Josefin Sans', sans-serif;
   text-transform: uppercase;
   font-weight: 700;
-  width: 100%;
-`
-
-const PageActionsBar = styled.div`
-  margin-bottom: 2em;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-`
-
-const ActionsLine = styled.div`
   width: 100%;
 `
 
@@ -161,15 +159,15 @@ export const LeftMenu = ({
           <LogoContainer>
             <Logo src={LogoPng} />
             <Title>
-              <em>
+              <i>
                 THE STORY ENGINE
-              </em>
+              </i>
               <br />
               CARD CREATOR
             </Title>
           </LogoContainer>
           <TextContainer>
-            Learn more about <em>The Story Engine</em> at <a href="https://storyenginedeck.com/">storyenginedeck.com</a>.
+            Learn more about <i>The Story Engine</i> at <a href="https://storyenginedeck.com/">storyenginedeck.com</a>.
           </TextContainer>
         </SectionContainer>
         <SectionContainer>
@@ -295,41 +293,59 @@ export const LeftMenu = ({
             />
           </TextContainer>
         </SectionContainer>
-        <PageActionsBar>
-          <Button 
-            variant="contained"
-            color="primary"
-            onClick={() => clearCards()}
-          >
-            Clear Cards
-          </Button>
-          <Button 
-            variant="contained"
-            color="primary"
-            onClick={() => window.print()}
-          >
-            Print Cards
-          </Button>
-          <Button 
-            variant="contained"
-            color="primary"
-            onClick={() => exportCards()}
-          >
-            Export Cards
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            component="label"
-          >
-            Import Cards
-            <input
-              type="file"
-              style={{ display: "none" }}
-              onChange={e => importCards(e)}
-            />
-          </Button>
-        </PageActionsBar>
+        <SectionContainer>
+          <Subtitle>Manage Deck</Subtitle>
+          <NoPadButtonLine>
+            <Button 
+              variant="contained"
+              color="primary"
+              onClick={() => window.print()}
+            >
+              Print Cards
+            </Button>
+            <Button 
+              variant="contained"
+              color="primary"
+              onClick={() => clearCards()}
+            >
+              Clear Cards
+            </Button>
+            <Button 
+              variant="contained"
+              color="primary"
+              onClick={() => exportCards()}
+            >
+              Export Cards
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              component="label"
+            >
+              Import Cards
+              <input
+                type="file"
+                style={{ display: "none" }}
+                onChange={e => importCards(e)}
+              />
+            </Button>
+          </NoPadButtonLine>
+        </SectionContainer>
+        <SectionContainer>
+          <TextContainer>
+            Webapp developed by Paweł Ngei. <i>The Story Engine Deck</i>
+            created by Peter Chiykowski.
+          </TextContainer>
+          <EmTextContainer>
+            The Story Engine and The Story Engine logo are trademarks of
+            Peter Chiykowski. The Story Engine is not related to Story Engine,
+            which is a Precis Intermedia trademark and game (
+            <a href='https://pigames.net/'>pigames.net</a>). 
+          </EmTextContainer>
+          <EmTextContainer>
+            This webapp may not be used for commercial purposes.
+          </EmTextContainer>
+        </SectionContainer>
       </InnerContainer>
     </LeftMenuContainer>
   )
