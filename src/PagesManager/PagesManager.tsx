@@ -14,6 +14,7 @@ type PagesManagerProps = {
 }
 
 const PageScrollContainer = styled.div`
+  flex: 1;
   position: relative;
   width: 100%;
   height: 100vh;
@@ -29,7 +30,7 @@ const InnerScrollContainer = styled.div<{multiplier: number}>`
   justify-content: center;
   width: 100%;
   height: 100%;
-  transform-origin: top left;
+  transform-origin: top center;
   ${({ multiplier }) => `transform: scale(${multiplier});`}
   @media print {
     transform: none;

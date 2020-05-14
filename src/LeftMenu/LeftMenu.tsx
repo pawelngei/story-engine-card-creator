@@ -11,6 +11,7 @@ import {
   backQualityOptions
 } from '../utils/constants'
 import { DisplayOptions } from '../App'
+import LogoPng from './logo.png'
 
 type LeftMenuProps = {
   card: CardType,
@@ -27,20 +28,51 @@ type LeftMenuProps = {
 const LeftMenuContainer = styled.div`
   position: relative;
   height: 100vh;
+  width: 700px;
   border-right: 1px solid black;
   background: ${colors.navy};
   color: ${colors.white};
+  overflow: auto;
   @media print {
     display: none;
   }
 `
 
-const Inner = styled.div`
+const InnerContainer = styled.div`
+  padding: 70px;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10%;
+  a {
+    text-decoration: none;
+    color: ${ colors.gold };
+  }
+`
+
+const HeaderContainer = styled.div`
+  width: 100%;
+  border-bottom: 2px solid ${colors.white};
+`
+
+const LogoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+`
+
+const EmphasisTitle = styled.em``
+
+const Title = styled.h1``
+
+const Logo = styled.img`
+  width: 160px;
+  height: 160px;
+  margin-right: 20px;
+`
+
+const InfoContainer = styled.div`
+  margin-bottom: 28px;
 `
 
 const CardActionsBar = styled.div`
@@ -102,7 +134,22 @@ export const LeftMenu = ({
   const displayLeftRifght = twoSectionCards.indexOf(type) === -1
   return (
     <LeftMenuContainer>
-      <Inner>
+      <InnerContainer>
+        <HeaderContainer>
+          <LogoContainer>
+            <Logo src={LogoPng} />
+            <Title>
+              <EmphasisTitle>
+                THE STORY ENGINE
+              </EmphasisTitle>
+              <br />
+              CARD CREATOR
+            </Title>
+          </LogoContainer>
+          <InfoContainer>
+            Learn more about <em>The Story Engine</em> at <a href="https://storyenginedeck.com/">storyenginedeck.com</a>.
+          </InfoContainer>
+        </HeaderContainer>
         <PageActionsBar>
           <Button 
             variant="contained"
@@ -248,7 +295,7 @@ export const LeftMenu = ({
             </>
           ) : null}
         </InputContainer>
-      </Inner>
+      </InnerContainer>
     </LeftMenuContainer>
   )
 }
