@@ -25,6 +25,8 @@ const PageScrollContainer = styled.div`
 `
 
 const InnerScrollContainer = styled.div<{multiplier: number}>`
+  display: flex;
+  justify-content: center;
   width: 100%;
   height: 100%;
   transform-origin: top left;
@@ -80,7 +82,8 @@ export const PagesManager = ({
       const paddedWidth = pageWidth * 1.10
       const multiplier = containerWidth / paddedWidth
       if (multiplier) {
-        setWidthMultiplier(multiplier)
+        const maxedMultiplier = multiplier > 1 ? 1 : multiplier
+        setWidthMultiplier(maxedMultiplier)
       }
     }
     updateWidth()
