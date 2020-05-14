@@ -44,6 +44,8 @@ const InnerContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 500;
   a {
     text-decoration: none;
     color: ${ colors.gold };
@@ -61,9 +63,10 @@ const LogoContainer = styled.div`
   margin-bottom: 30px;
 `
 
-const EmphasisTitle = styled.em``
-
-const Title = styled.h1``
+const Title = styled.h1`
+  font-weight: 700;
+  font-size: 2.2em;
+`
 
 const Logo = styled.img`
   width: 160px;
@@ -72,6 +75,7 @@ const Logo = styled.img`
 `
 
 const InfoContainer = styled.div`
+  font-size: 1.2em;
   margin-bottom: 28px;
 `
 
@@ -139,9 +143,9 @@ export const LeftMenu = ({
           <LogoContainer>
             <Logo src={LogoPng} />
             <Title>
-              <EmphasisTitle>
+              <em>
                 THE STORY ENGINE
-              </EmphasisTitle>
+              </em>
               <br />
               CARD CREATOR
             </Title>

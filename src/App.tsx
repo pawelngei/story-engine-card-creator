@@ -1,3 +1,4 @@
+import '@openfonts/josefin-sans_all'
 import React, { useState } from 'react'
 import { CardType } from './Card/Card'
 import { PagesManager } from './PagesManager/PagesManager'

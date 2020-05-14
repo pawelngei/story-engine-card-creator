@@ -53,7 +53,6 @@ const SideText = styled.div<{ twoSectorSetup: boolean }>`
   height: 20%;
   overflow: hidden;
   line-height: 1em;
-  font-family: 'Ubuntu';
   ${({ twoSectorSetup }) => twoSectorSetup ? `
     height: 30%;
     align-items: center;
