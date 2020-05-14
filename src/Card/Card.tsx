@@ -124,7 +124,7 @@ export const Card = ({
   back,
   selected
 }: CardProps) => {
-  const color = quality === 'dark' ? colors.white : colors.black
+  const color = quality === 'original' ? colors.white : colors.black
   const cardFace = back ? 'back' : 'front'
   const backgroundSrc = backgroundsLibrary[cardFace][quality][type]
   const twoSectorSetup = twoSectionCards.indexOf(type) !== -1

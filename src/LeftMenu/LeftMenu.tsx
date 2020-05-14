@@ -3,7 +3,13 @@ import styled from 'styled-components'
 import Button from '@material-ui/core/Button'
 import { CardType } from '../Card/Card'
 import { colors } from '../styles/colors'
-import { cardTypes, twoSectionCards } from '../utils/constants'
+import {
+  cardTypes,
+  twoSectionCards,
+  Quality,
+  frontQualityOptions,
+  backQualityOptions
+} from '../utils/constants'
 import { DisplayOptions } from '../App'
 
 type LeftMenuProps = {
@@ -66,12 +72,6 @@ const ActionsLine = styled.div`
   width: 100%;
 `
 
-const qualityOptions = [
-  'white',
-  'light',
-  'dark'
-]
-
 export const LeftMenu = ({
   card,
   setCard,
@@ -98,7 +98,7 @@ export const LeftMenu = ({
       ...otherOptions
     })
   }
-  const { displayBacks, quality } = displayOptions
+  const { displayBacks, backQuality, frontQuality } = displayOptions
   const displayLeftRifght = twoSectionCards.indexOf(type) === -1
   return (
     <LeftMenuContainer>
@@ -155,17 +155,42 @@ export const LeftMenu = ({
           <ActionsLine>
             Card Back Quality:
             <select
-              name='quality'
-              value={quality}
+              name='backQuality'
+              value={backQuality}
               onChange={e => setDisplayOptions({
                 ...displayOptions,
-                quality: e.target.value
+                backQuality: e.target.value as Quality
               })}
             >
-              {qualityOptions.map((quality, i) => (
-                <option key={`select-back-${i}`} value={quality}>{quality}</option>
+              {backQualityOptions.map((option, i) => (
+                <option
+                  key={`select-back-${i}`}
+                  value={option.value}
+                >
+                  {option.label}
+                </option>
               ))}
             </select>
+          </ActionsLine>
+          <ActionsLine>
+            Card Front Quality:
+              <select
+                name='frontQuality'
+                value={frontQuality}
+                onChange={e => setDisplayOptions({
+                  ...displayOptions,
+                  frontQuality: e.target.value as Quality
+                })}
+              >
+                {frontQualityOptions.map((option, i) => (
+                  <option
+                    key={`select-back-${i}`}
+                    value={option.value}
+                  >
+                    {option.label}
+                  </option>
+                ))}
+              </select>
           </ActionsLine>
         </PageActionsBar>
         <CardActionsBar>

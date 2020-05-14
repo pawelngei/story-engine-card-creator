@@ -34,21 +34,14 @@ type BackgroundsLibraryType = {
 
 export const backgroundsLibrary: BackgroundsLibraryType = {
   back: {
-    white: {
+    minimalist: {
       aspect: BackWhiteAspect,
       agent: BackWhiteAgent,
       anchor: BackWhiteAnchor,
       conflict: BackWhiteConflict,
       engine: BackWhiteEngine
     },
-    light: {
-      aspect: BackDarkAspect,
-      agent: BackDarkAgent,
-      anchor: BackDarkAnchor,
-      conflict: BackDarkConflict,
-      engine: BackDarkEngine
-    },
-    dark: {
+    original: {
       aspect: BackDarkAspect,
       agent: BackDarkAgent,
       anchor: BackDarkAnchor,
@@ -57,7 +50,7 @@ export const backgroundsLibrary: BackgroundsLibraryType = {
     }
   },
   front: {
-    white: {
+    minimalist: {
       aspect: FrontWhiteAspect,
       agent: FrontWhiteAgent,
       anchor: FrontWhiteAnchor,
@@ -71,7 +64,7 @@ export const backgroundsLibrary: BackgroundsLibraryType = {
       conflict: FrontLightConflict,
       engine: FrontLightEngine
     },
-    dark: {
+    original: {
       aspect: FrontDarkAspect,
       agent: FrontDarkAgent,
       anchor: FrontDarkAnchor,

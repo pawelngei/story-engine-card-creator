@@ -5,10 +5,17 @@ import { LeftMenu } from './LeftMenu/LeftMenu'
 import { MobilePlaceholder } from './MobilePlaceholder/MobilePlaceholder'
 import styled from 'styled-components'
 import { exportCSV, importCSV } from './utils/csv'
+import {
+  emptyCard,
+  sampleCard,
+  defaultOptions,
+  Quality
+} from './utils/constants'
 
 export type DisplayOptions = {
   displayBacks: boolean,
-  quality: string
+  frontQuality: Quality
+  backQuality: Quality
 }
 
 const AppContainer = styled.div`
@@ -27,27 +34,6 @@ const TabletDesktopWrapper = styled.div`
     display: flex;
   }
 `
-
-const emptyCard = {
-  top: '',
-  bottom: '',
-  left: '',
-  right: '',
-  type: 'agent'
-}
-
-const sampleCard = {
-  top: 'topText',
-  bottom: 'bottomText',
-  left: '',
-  right: '',
-  type: 'engine'
-}
-
-const defaultOptions = {
-  displayBacks: false,
-  quality: 'white'
-}
 
 const App = () => {
   const savedCards = JSON.parse(window.localStorage.getItem('cards') || 'null')
