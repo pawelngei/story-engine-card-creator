@@ -33,7 +33,7 @@ export const defaultCards = [
     "right":"A STORY IDEA"},
   {
     "type":"conflict",
-    "bottom":"BUT FIRST MUST THEY MUST LEARN HOW TO EDIT CARDS",
+    "bottom":"BUT FIRST THEY MUST LEARN HOW TO EDIT CARDS",
     "top":"BUT THEY WILL HAVE TO PRACTICE IMPORTING AND EXPORTING DECKS",
     "left":"",
     "right":""},
