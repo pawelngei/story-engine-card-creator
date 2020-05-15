@@ -3,8 +3,8 @@ import { CardType } from '../Card/Card'
 const nlRegex = /\n/gi
 const pipeRegex = /\|/gi
 
-const newLineToPipe = (str: string) => str.replace(nlRegex, '|')
-const pipeToNewLine = (str: string) => str.replace(pipeRegex, '\n')
+const newLineToPipe = (str: string) => (str || '').replace(nlRegex, '|')
+const pipeToNewLine = (str: string) => (str || '').replace(pipeRegex, '\n')
 
 export const exportCSV = (cards: CardType[]) => {
   const cardRows = cards.map(card => ([
@@ -21,10 +21,10 @@ export const importCSV = (csvContent: string) => {
     const columns = row.split(',')
     const card = {
       type: columns[0],
-      bottom: pipeToNewLine(columns[1] || ''),
-      top: pipeToNewLine(columns[2] || ''),
-      left: pipeToNewLine(columns[3] || ''),
-      right: pipeToNewLine(columns[4] || '')
+      bottom: pipeToNewLine(columns[1]),
+      top: pipeToNewLine(columns[2]),
+      left: pipeToNewLine(columns[3]),
+      right: pipeToNewLine(columns[4])
     }
     return card
   })
