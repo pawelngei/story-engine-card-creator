@@ -408,7 +408,7 @@ export const LeftMenu = ({
                     <a href='https://alxd.org/'>solarpunk | hacker blog</a>
                   </li>
                   <li>
-                    <a href='https://github.com/pawelngei'>
+                    <a href='https://github.com/pawelngei/story-engine-card-creator'>
                       This project on Github
                     </a>
                   </li>
