@@ -37,6 +37,7 @@ const CardContainer = styled.div<CardContainerProps>`
     margin: -3px;
     z-index: 1;
     @media print {
+      z-index: 0;
       border: 1px solid black;
       margin: -1px;
     };
