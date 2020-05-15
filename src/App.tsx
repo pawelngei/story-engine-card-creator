@@ -9,7 +9,6 @@ import { exportCSV, importCSV } from './utils/csv'
 import {
   emptyCard,
   defaultCards,
-  sampleCard,
   defaultOptions,
   Quality
 } from './utils/constants'
@@ -78,7 +77,7 @@ const App = () => {
   }
   const deleteCard = () => {
     if (cards.length === 1) {
-      setAndSaveCards([sampleCard])
+      setAndSaveCards([emptyCard])
     } else {
       setAndSaveCards([
         ...cards.slice(0, activeCardIdx),
@@ -108,7 +107,7 @@ const App = () => {
     })
   }
   const clearCards = () => {
-    setAndSaveCards([sampleCard])
+    setAndSaveCards(defaultCards)
     setActiveCardIdx(0)
   }
   const card = cards[activeCardIdx]

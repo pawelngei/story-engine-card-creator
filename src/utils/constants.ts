@@ -53,14 +53,6 @@ export const emptyCard = {
   type: 'agent'
 }
 
-export const sampleCard = {
-  top: 'topText',
-  bottom: 'bottomText',
-  left: '',
-  right: '',
-  type: 'engine'
-}
-
 export type Quality = 'original' | 'light' | 'minimalist'
 
 export const defaultOptions = {
