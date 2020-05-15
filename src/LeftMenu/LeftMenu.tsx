@@ -143,6 +143,13 @@ const SelectLine = styled.div`
   align-items: center;
 `
 
+const FileInputWrapper = styled.div`
+  /* Safari cannot process files from display: none */
+  width: 0;
+  height: 0;
+  overflow: hidden;
+`
+
 const InputContainer = styled.div``
 
 const StyledTextarea = styled.textarea`
@@ -381,11 +388,12 @@ export const LeftMenu = ({
                 component="label"
               >
                 Import
-                <input
-                  type="file"
-                  style={{ display: "none" }}
-                  onChange={e => importCards(e)}
-                />
+                <FileInputWrapper>
+                  <input
+                    type="file"
+                    onChange={e => importCards(e)}
+                  />
+                </FileInputWrapper>
               </Button>
             </NoPadButtonLine>
           </SectionContainer>
