@@ -28,7 +28,9 @@ const PageScrollContainer = styled.div`
 
 const InnerScrollContainer = styled.div<{multiplier: number}>`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
   width: 100%;
   height: 100%;
   transform-origin: top center;
