@@ -97,14 +97,18 @@ const App = () => {
     element.click()
   }
   const importCards = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target?.files?.[0]
-    file?.text().then(text => {
-      try {
-        setAndSaveCards(importCSV(text))
-      } catch (e) {
-        alert(`Wrong file imported - ${e}`)
-      }
-    })
+    try {
+      const file = e.target?.files?.[0]
+      file?.text().then(text => {
+        try {
+          setAndSaveCards(importCSV(text))
+        } catch (e) {
+          alert(`Wrong file imported - ${e}`)
+        }
+      })
+    } catch (e) {
+      alert('Safari imports are not supported.')
+    }
   }
   const clearCards = () => {
     setAndSaveCards(defaultCards)
