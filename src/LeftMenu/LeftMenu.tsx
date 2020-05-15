@@ -155,10 +155,12 @@ const StyledTextarea = styled.textarea`
 const StyledSelect = styled.select`
   font-family: 'Josefin Sans', sans-serif;
   font-size: 1.2em;
-  border: none;
   outline: none;
   background: none;
   color: ${colors.gold};
+  padding: 2px;
+  border: 2px solid ${ colors.gold };
+  border-radius: 5px;
 `
 
 const LinksContainer = styled(TextContainer)`
