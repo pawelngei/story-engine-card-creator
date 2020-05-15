@@ -139,6 +139,8 @@ const NoPadButtonLine = styled(ButtonLine)`
 const SelectLine = styled.div`
   font-size: 1.2em;
   margin-bottom: 8px;
+  display: inline-flex;
+  align-items: center;
 `
 
 const InputContainer = styled.div``
@@ -148,6 +150,15 @@ const StyledTextarea = styled.textarea`
   text-transform: uppercase;
   font-weight: 700;
   width: 100%;
+`
+
+const StyledSelect = styled.select`
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.2em;
+  border: none;
+  outline: none;
+  background: none;
+  color: ${colors.gold};
 `
 
 const LinksContainer = styled(TextContainer)`
@@ -235,7 +246,7 @@ export const LeftMenu = ({
             </ButtonLine>
             <SelectLine>
               Card type:&nbsp;
-              <select
+              <StyledSelect
                 name='type'
                 value={type}
                 onChange={e => setCardValue(e)}
@@ -248,7 +259,7 @@ export const LeftMenu = ({
                     {option.label}
                   </option>
                 ))}
-              </select>
+              </StyledSelect>
             </SelectLine>
             <InputContainer>
               <StyledTextarea
@@ -284,8 +295,8 @@ export const LeftMenu = ({
           <SectionContainer>
             <Subtitle>Design Deck</Subtitle>
             <TextContainer>
-              Card front design:&nbsp;
-              <select
+              Card fronts:&nbsp;
+              <StyledSelect
                 name='frontQuality'
                 value={frontQuality}
                 onChange={e => setDisplayOptions({
@@ -301,10 +312,10 @@ export const LeftMenu = ({
                     {option.label}
                   </option>
                 ))}
-              </select>
+              </StyledSelect>
               &nbsp;
-              Card back design:&nbsp;
-              <select
+              Card backs:&nbsp;
+              <StyledSelect
                 name='backQuality'
                 value={backQuality}
                 onChange={e => setDisplayOptions({
@@ -320,7 +331,7 @@ export const LeftMenu = ({
                     {option.label}
                   </option>
                 ))}
-              </select>
+              </StyledSelect>
             </TextContainer>
             <TextContainer>
               <label htmlFor="backs">
