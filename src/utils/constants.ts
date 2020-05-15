@@ -12,6 +12,39 @@ export const typeOptions: TypeOption[] = [
 
 export const twoSectionCards = ['conflict', 'engine']
 
+export const defaultCards = [
+  {
+    "type":"agent",
+    "bottom":"A STORYTELLER",
+    "top":"A WRITER",
+    "left":"A GAME MASTER",
+    "right":"A TEACHER"},
+  {
+    "type":"engine",
+    "bottom":"WANTS TO design",
+    "top":"wants to create",
+    "left":"",
+    "right":""},
+  {
+    "type":"anchor",
+    "bottom":"A CUSTOM CARD",
+    "top":"A CREATIVE\nPROMPT",
+    "left":"A PLOT",
+    "right":"A STORY IDEA"},
+  {
+    "type":"conflict",
+    "bottom":"BUT FIRST MUST THEY MUST LEARN HOW TO EDIT CARDS",
+    "top":"BUT THEY WILL HAVE TO PRACTICE IMPORTING AND EXPORTING DECKS",
+    "left":"",
+    "right":""},
+  {
+    "type":"aspect",
+    "bottom":"IMAGINATIVE",
+    "top":"THOUGHT-PROVOKING",
+    "left":"NEW",
+    "right":"ORIGINAL"}
+]
+
 export const emptyCard = {
   top: '',
   bottom: '',

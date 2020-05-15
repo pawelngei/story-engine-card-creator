@@ -8,6 +8,7 @@ import styled from 'styled-components'
 import { exportCSV, importCSV } from './utils/csv'
 import {
   emptyCard,
+  defaultCards,
   sampleCard,
   defaultOptions,
   Quality
@@ -41,7 +42,7 @@ const App = () => {
   const savedOptions = JSON.parse(
     window.localStorage.getItem('displayOptions') || 'null')
   const [cards, setCards] = useState<CardType[]>(
-    savedCards || [sampleCard]
+    savedCards || defaultCards
   )
   const [activeCardIdx, setActiveCardIdx] = useState(0)
   const [displayOptions, setDisplayOptions] = useState<DisplayOptions>(
