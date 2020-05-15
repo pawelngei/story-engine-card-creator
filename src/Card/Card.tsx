@@ -55,9 +55,8 @@ const SideText = styled.div<{ twoSectorSetup: boolean }>`
   line-height: 1em;
   ${({ twoSectorSetup }) => twoSectorSetup ? `
     height: 30%;
-    align-items: center;
     > div {
-      padding: 0;
+      padding: 0 5%;
     }
   ` : ''}
 `

@@ -4,10 +4,10 @@ type TypeOption = { label: string, value: Type }
 
 export const typeOptions: TypeOption[] = [
   { label: 'Agent', value: 'agent' },
+  { label: 'Engine', value: 'engine' },
   { label: 'Anchor', value: 'anchor' },
-  { label: 'Aspect', value: 'aspect' },
   { label: 'Conflict', value: 'conflict' },
-  { label: 'Engine', value: 'engine' }
+  { label: 'Aspect', value: 'aspect' },
 ]
 
 export const twoSectionCards = ['conflict', 'engine']
