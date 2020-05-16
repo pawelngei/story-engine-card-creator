@@ -380,14 +380,14 @@ export const LeftMenu = ({
                 color="primary"
                 onClick={() => exportCards()}
               >
-                Export
+                Export CSV
               </Button>
               <Button
                 variant="contained"
                 color="primary"
                 component="label"
               >
-                Import
+                Import CSV
                 <FileInputWrapper>
                   <input
                     type="file"
