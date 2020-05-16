@@ -429,13 +429,13 @@ export const LeftMenu = ({
                     <a href='https://alxd.org/'>solarpunk | hacker blog</a>
                   </li>
                   <li>
-                    <a href='https://github.com/pawelngei/story-engine-card-creator'>
-                      This project on Github
+                    <a href='https://twitter.com/PawelNgei'>
+                      Twitter
                     </a>
                   </li>
                   <li>
-                    <a href='https://www.linkedin.com/in/paul-ngei-19227983/'>
-                      LinkedIn
+                    <a href='https://github.com/pawelngei/story-engine-card-creator'>
+                      This project on Github
                     </a>
                   </li>
                 </LinksList>
