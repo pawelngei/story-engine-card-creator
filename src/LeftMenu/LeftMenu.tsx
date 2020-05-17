@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 import Switch from "@material-ui/core/Switch";
+import { createMuiTheme, withStyles } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
 import { CardType } from "../Card/Card";
 import { colors } from "../styles/colors";
 import {
@@ -12,8 +14,7 @@ import {
   backQualityOptions,
 } from "../utils/constants";
 import { DisplayOptions } from "../App";
-import { createMuiTheme, withStyles } from "@material-ui/core/styles";
-import { ThemeProvider } from "@material-ui/styles";
+import { rotateLeft, rotateRight } from "../utils/card";
 import LogoPng from "./logo.png";
 
 type LeftMenuProps = {
@@ -266,6 +267,22 @@ export const LeftMenu = ({
                 onClick={() => deleteCard()}
               >
                 Delete this card
+              </Button>
+            </ButtonLine>
+            <ButtonLine>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => setCard(rotateLeft(card))}
+              >
+                Rotate Left
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => setCard(rotateRight(card))}
+              >
+                Rotate Right
               </Button>
             </ButtonLine>
             <SelectLine>
