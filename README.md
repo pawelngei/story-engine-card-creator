@@ -1,7 +1,11 @@
 # Story Engine Card Creator
 A card creator app for http://www.storyenginedeck.com/
 
-This is a beta version, it needs a lot: linting, testing, etc.
+This is a beta version with some bugs and imperfections:
+
+ - It doesn't have tests
+ - Safari doesn't allow file CSV (it doesn't support browser File interface)
+ - If user creates n % 3 = 2 cards, the last one may look misaligned by 1 px
 
 # License
 
