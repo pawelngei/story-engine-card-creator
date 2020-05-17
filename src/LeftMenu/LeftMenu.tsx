@@ -16,6 +16,8 @@ import {
 } from "../utils/constants";
 import { DisplayOptions } from "../App";
 import { rotateLeft, rotateRight } from "../utils/card";
+import { TitleAndInstructions } from "./TitleAndInstructions";
+import { editInstructions } from "./instructions";
 import LogoPng from "./logo.png";
 
 type LeftMenuProps = {
@@ -89,6 +91,9 @@ const InnerContainer = styled.div`
   a {
     text-decoration: none;
     color: ${colors.gold};
+    &:hover {
+      color: ${colors.lightGold};
+    }
   }
   @media (max-width: 1279px) {
     padding: 40px;
@@ -139,6 +144,8 @@ const EmTextContainer = styled(TextContainer)`
 `;
 
 const Subtitle = styled.h2`
+  display: inline-flex;
+  align-items: center;
   margin-top: 0;
   margin-bottom: 20px;
 `;
@@ -255,7 +262,10 @@ export const LeftMenu = ({
             </TextContainer>
           </SectionContainer>
           <SectionContainer>
-            <Subtitle>Edit Cards</Subtitle>
+            <TitleAndInstructions
+              title={"Edit Cards"}
+              instructions={editInstructions}
+            />
             <SelectLine>
               <div>
                 Change card type:&nbsp;
