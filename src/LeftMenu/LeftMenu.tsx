@@ -17,7 +17,11 @@ import {
 import { DisplayOptions } from "../App";
 import { rotateLeft, rotateRight } from "../utils/card";
 import { TitleAndInstructions } from "./TitleAndInstructions";
-import { editInstructions } from "./instructions";
+import {
+  editInstructions,
+  designInstructions,
+  manageInstructions,
+} from "./instructions";
 import LogoPng from "./logo.png";
 
 type LeftMenuProps = {
@@ -141,13 +145,6 @@ const TextContainer = styled.div`
 const EmTextContainer = styled(TextContainer)`
   font-size: 1em;
   font-style: italic;
-`;
-
-const Subtitle = styled.h2`
-  display: inline-flex;
-  align-items: center;
-  margin-top: 0;
-  margin-bottom: 20px;
 `;
 
 const ButtonLine = styled.div`
@@ -346,7 +343,10 @@ export const LeftMenu = ({
             </ButtonLine>
           </SectionContainer>
           <SectionContainer>
-            <Subtitle>Design Deck</Subtitle>
+            <TitleAndInstructions
+              title={"Design Deck"}
+              instructions={designInstructions}
+            />
             <TextContainer>
               Card fronts:&nbsp;
               <StyledSelect
@@ -399,7 +399,10 @@ export const LeftMenu = ({
             </TextContainer>
           </SectionContainer>
           <SectionContainer>
-            <Subtitle>Manage Deck</Subtitle>
+            <TitleAndInstructions
+              title={"Manage Deck"}
+              instructions={manageInstructions}
+            />
             <TextContainer>
               Click &quot;Print&quot; and use your computer&apos;s save-to-PDF
               function to save your deck as a designed PDF.
