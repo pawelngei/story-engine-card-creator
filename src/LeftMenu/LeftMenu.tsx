@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
+import Switch from "@material-ui/core/Switch";
 import { CardType } from "../Card/Card";
 import { colors } from "../styles/colors";
 import {
@@ -11,7 +12,7 @@ import {
   backQualityOptions,
 } from "../utils/constants";
 import { DisplayOptions } from "../App";
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createMuiTheme, withStyles } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import LogoPng from "./logo.png";
 
@@ -44,6 +45,20 @@ const theme = createMuiTheme({
     tonalOffset: 0.2,
   },
 });
+
+const GoldenSwitch = withStyles({
+  switchBase: {
+    color: colors.gold,
+    "&$checked": {
+      color: colors.gold,
+    },
+    "&$checked + $track": {
+      backgroundColor: colors.gold,
+    },
+  },
+  checked: {},
+  track: {},
+})(Switch);
 
 const LeftMenuContainer = styled.div`
   position: relative;
@@ -338,10 +353,7 @@ export const LeftMenu = ({
             </TextContainer>
             <TextContainer>
               <label htmlFor="backs">Display card backs on screen?&nbsp;</label>
-              <input
-                type="checkbox"
-                id="backs"
-                name="backs"
+              <GoldenSwitch
                 checked={displayBacks}
                 onChange={() =>
                   setDisplayOptions({
@@ -349,6 +361,8 @@ export const LeftMenu = ({
                     displayBacks: !displayBacks,
                   })
                 }
+                name="displayBacks"
+                inputProps={{ "aria-label": "primary checkbox" }}
               />
             </TextContainer>
           </SectionContainer>
