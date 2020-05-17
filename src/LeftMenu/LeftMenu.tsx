@@ -146,17 +146,17 @@ const Subtitle = styled.h2`
 const ButtonLine = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 28px;
+  margin-top: 20px;
 `;
 
 const NoPadButtonLine = styled(ButtonLine)`
-  margin-bottom: 0;
+  margin: 0;
 `;
 
 const SelectLine = styled.div`
   width: 100%;
   font-size: 1.2em;
-  margin-bottom: 8px;
+  margin-bottom: 20px;
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
@@ -255,26 +255,10 @@ export const LeftMenu = ({
             </TextContainer>
           </SectionContainer>
           <SectionContainer>
-            <Subtitle>Create Cards</Subtitle>
-            <ButtonLine>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => createNewCard()}
-              >
-                Create new card
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => deleteCard()}
-              >
-                Delete this card
-              </Button>
-            </ButtonLine>
+            <Subtitle>Edit Cards</Subtitle>
             <SelectLine>
               <div>
-                Card type:&nbsp;
+                Change card type:&nbsp;
                 <StyledSelect
                   name="type"
                   value={type}
@@ -334,6 +318,22 @@ export const LeftMenu = ({
                 </>
               ) : null}
             </InputContainer>
+            <ButtonLine>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => deleteCard()}
+              >
+                Delete this card
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => createNewCard()}
+              >
+                Create new card
+              </Button>
+            </ButtonLine>
           </SectionContainer>
           <SectionContainer>
             <Subtitle>Design Deck</Subtitle>
@@ -390,6 +390,10 @@ export const LeftMenu = ({
           </SectionContainer>
           <SectionContainer>
             <Subtitle>Manage Deck</Subtitle>
+            <TextContainer>
+              Click &quot;Print&quot; and use your computer&apos;s save-to-PDF
+              function to save your deck as a designed PDF.
+            </TextContainer>
             <NoPadButtonLine>
               <Button
                 variant="contained"
@@ -403,17 +407,17 @@ export const LeftMenu = ({
                 color="primary"
                 onClick={() => clearCards()}
               >
-                Clear
+                Reset Deck
               </Button>
               <Button
                 variant="contained"
                 color="primary"
                 onClick={() => exportCards()}
               >
-                Export CSV
+                Save Deck
               </Button>
               <Button variant="contained" color="primary" component="label">
-                Import CSV
+                Load Deck
                 <FileInputWrapper>
                   <input type="file" onChange={(e) => importCards(e)} />
                 </FileInputWrapper>
