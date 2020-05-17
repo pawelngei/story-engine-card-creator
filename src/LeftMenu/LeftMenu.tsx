@@ -259,7 +259,14 @@ export const LeftMenu = ({
             </LogoContainer>
             <TextContainer>
               Learn more about <i>The Story Engine</i> at{" "}
-              <a href="https://storyenginedeck.com/">storyenginedeck.com</a>.
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://storyenginedeck.com/"
+              >
+                storyenginedeck.com
+              </a>
+              .
             </TextContainer>
           </SectionContainer>
           <SectionContainer>
@@ -516,7 +523,14 @@ export const LeftMenu = ({
               The Story Engine and The Story Engine logo are trademarks of Peter
               Chiykowski. The Story Engine is not related to Story Engine, which
               is a Precis Intermedia trademark and game (
-              <a href="https://pigames.net/">pigames.net</a>).
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://pigames.net/"
+              >
+                pigames.net
+              </a>
+              ).
             </EmTextContainer>
             <EmTextContainer>
               This webapp may not be used for commercial purposes.
