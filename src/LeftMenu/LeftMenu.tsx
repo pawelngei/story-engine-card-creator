@@ -149,7 +149,7 @@ const EmTextContainer = styled(TextContainer)`
 
 const TipContainer = styled(TextContainer)`
   font-size: 1em;
-`
+`;
 
 const ButtonLine = styled.div`
   display: flex;
@@ -451,17 +451,29 @@ export const LeftMenu = ({
                 <b>More from Peter:</b>
                 <LinksList>
                   <li>
-                    <a href="http://storyenginedeck.com/cardcreationguide">
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="http://storyenginedeck.com/cardcreationguide"
+                    >
                       Card creation guide
                     </a>
                   </li>
                   <li>
-                    <a href="http://storyenginedeck.com/tutorial">
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="http://storyenginedeck.com/tutorial"
+                    >
                       Deck tutorial
                     </a>
                   </li>
                   <li>
-                    <a href="http://storyenginedeck.com/">
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="http://storyenginedeck.com/"
+                    >
                       Buy <i>The Story Engine</i>
                     </a>
                   </li>
@@ -471,13 +483,29 @@ export const LeftMenu = ({
                 <b>More from Paweł:</b>
                 <LinksList>
                   <li>
-                    <a href="https://alxd.org/">solarpunk | hacker blog</a>
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="https://alxd.org/"
+                    >
+                      solarpunk | hacker blog
+                    </a>
                   </li>
                   <li>
-                    <a href="https://twitter.com/PawelNgei">Twitter</a>
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="https://twitter.com/PawelNgei"
+                    >
+                      Twitter
+                    </a>
                   </li>
                   <li>
-                    <a href="https://github.com/pawelngei/story-engine-card-creator">
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="https://github.com/pawelngei/story-engine-card-creator"
+                    >
                       This project on Github
                     </a>
                   </li>
