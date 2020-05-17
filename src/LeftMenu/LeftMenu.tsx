@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 import Switch from "@material-ui/core/Switch";
+import { RotateLeft, RotateRight } from "@material-ui/icons";
 import { createMuiTheme, withStyles } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import { CardType } from "../Card/Card";
@@ -153,10 +154,12 @@ const NoPadButtonLine = styled(ButtonLine)`
 `;
 
 const SelectLine = styled.div`
+  width: 100%;
   font-size: 1.2em;
   margin-bottom: 8px;
   display: inline-flex;
   align-items: center;
+  justify-content: space-between;
 `;
 
 const FileInputWrapper = styled.div`
@@ -269,35 +272,37 @@ export const LeftMenu = ({
                 Delete this card
               </Button>
             </ButtonLine>
-            <ButtonLine>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => setCard(rotateLeft(card))}
-              >
-                Rotate Left
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => setCard(rotateRight(card))}
-              >
-                Rotate Right
-              </Button>
-            </ButtonLine>
             <SelectLine>
-              Card type:&nbsp;
-              <StyledSelect
-                name="type"
-                value={type}
-                onChange={(e) => setCardValue(e)}
-              >
-                {typeOptions.map((option, i) => (
-                  <option key={`select-${i}`} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </StyledSelect>
+              <div>
+                Card type:&nbsp;
+                <StyledSelect
+                  name="type"
+                  value={type}
+                  onChange={(e) => setCardValue(e)}
+                >
+                  {typeOptions.map((option, i) => (
+                    <option key={`select-${i}`} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </StyledSelect>
+              </div>
+              <div>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => setCard(rotateLeft(card))}
+                >
+                  <RotateLeft />
+                </Button>{" "}
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => setCard(rotateRight(card))}
+                >
+                  <RotateRight />
+                </Button>
+              </div>
             </SelectLine>
             <InputContainer>
               <StyledTextarea
