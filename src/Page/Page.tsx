@@ -1,15 +1,15 @@
-import React from 'react'
-import styled from 'styled-components'
-import { Card, CardType } from '../Card/Card'
+import React from "react";
+import styled from "styled-components";
+import { Card, CardType } from "../Card/Card";
 
 type PageProps = {
-  cards: CardType[]
-  setActiveCard: (index: number) => void
-  offsetIndex: number
-  activeCardIdx: number
-  backs?: boolean
-  quality: string
-}
+  cards: CardType[];
+  setActiveCard: (index: number) => void;
+  offsetIndex: number;
+  activeCardIdx: number;
+  backs?: boolean;
+  quality: string;
+};
 
 const PaperContainer = styled.div`
   width: 210mm;
@@ -19,7 +19,7 @@ const PaperContainer = styled.div`
   @media print {
     border: none;
   }
-`
+`;
 
 const PrintableArea = styled.div<{ reversed: boolean }>`
   position: absolute;
@@ -29,24 +29,24 @@ const PrintableArea = styled.div<{ reversed: boolean }>`
   height: 90%;
   display: flex;
   flex-wrap: wrap;
-  flex-direction: ${({ reversed }) => reversed ? 'row-reverse' : 'row' };
+  flex-direction: ${({ reversed }) => (reversed ? "row-reverse" : "row")};
   align-content: flex-start;
-`
+`;
 
 const CardWrapper = styled.div`
   width: 33.33%;
-`
+`;
 
 const makeBack = (card: CardType, type: string) => {
-  const name = type.toUpperCase()
+  const name = type.toUpperCase();
   return {
     type: card.type,
     top: name,
     bottom: name,
     left: name,
-    right: name
-  }
-}
+    right: name,
+  };
+};
 
 export const Page = ({
   cards,
@@ -56,7 +56,7 @@ export const Page = ({
   quality,
   backs,
 }: PageProps) => {
-  const displayedCards = backs ? cards.map(c => makeBack(c, '')) : cards
+  const displayedCards = backs ? cards.map((c) => makeBack(c, "")) : cards;
   return (
     <PaperContainer>
       <PrintableArea reversed={!!backs}>
@@ -68,12 +68,12 @@ export const Page = ({
             <Card
               quality={quality}
               back={!!backs}
-              selected={activeCardIdx === (index + offsetIndex)}
+              selected={activeCardIdx === index + offsetIndex}
               {...card}
             />
           </CardWrapper>
         ))}
       </PrintableArea>
     </PaperContainer>
-  )
-}
+  );
+};
