@@ -147,6 +147,10 @@ const EmTextContainer = styled(TextContainer)`
   font-style: italic;
 `;
 
+const TipContainer = styled(TextContainer)`
+  font-size: 1em;
+`
+
 const ButtonLine = styled.div`
   display: flex;
   justify-content: space-between;
@@ -154,7 +158,7 @@ const ButtonLine = styled.div`
 `;
 
 const NoPadButtonLine = styled(ButtonLine)`
-  margin: 0;
+  margin-bottom: 20px;
 `;
 
 const SelectLine = styled.div`
@@ -403,10 +407,6 @@ export const LeftMenu = ({
               title={"Manage Deck"}
               instructions={manageInstructions}
             />
-            <TextContainer>
-              Click &quot;Print&quot; and use your computer&apos;s save-to-PDF
-              function to save your deck as a designed PDF.
-            </TextContainer>
             <NoPadButtonLine>
               <Button
                 variant="contained"
@@ -436,6 +436,10 @@ export const LeftMenu = ({
                 </FileInputWrapper>
               </Button>
             </NoPadButtonLine>
+            <TipContainer>
+              Click &quot;Print&quot; and use your computer&apos;s save-to-PDF
+              function to save your deck as a designed PDF.
+            </TipContainer>
           </SectionContainer>
           <SectionContainer>
             <TextContainer>
