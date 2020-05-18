@@ -184,6 +184,13 @@ const StyledTextarea = styled.textarea`
   text-transform: uppercase;
   font-weight: 700;
   width: 100%;
+  padding: 10px;
+  min-height: 40px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 `;
 
 const StyledSelect = styled.select`
@@ -243,7 +250,7 @@ export const LeftMenu = ({
     });
   };
   const { displayBacks, backQuality, frontQuality } = displayOptions;
-  const displayLeftRifght = twoSectionCards.indexOf(type) === -1;
+  const displayLeftRight = twoSectionCards.indexOf(type) === -1;
   return (
     <LeftMenuContainer>
       <ThemeProvider theme={theme}>
@@ -313,27 +320,27 @@ export const LeftMenu = ({
                 value={bottom}
                 onChange={(e) => setCardValue(e)}
               />
+              {displayLeftRight ? (
+                <StyledTextarea
+                  name="left"
+                  placeholder="left"
+                  value={left}
+                  onChange={(e) => setCardValue(e)}
+                />
+              ) : null}
               <StyledTextarea
                 name="top"
                 placeholder="top"
                 value={top}
                 onChange={(e) => setCardValue(e)}
               />
-              {displayLeftRifght ? (
-                <>
-                  <StyledTextarea
-                    name="left"
-                    placeholder="left"
-                    value={left}
-                    onChange={(e) => setCardValue(e)}
-                  />
-                  <StyledTextarea
-                    name="right"
-                    placeholder="right"
-                    value={right}
-                    onChange={(e) => setCardValue(e)}
-                  />
-                </>
+              {displayLeftRight ? (
+                <StyledTextarea
+                  name="right"
+                  placeholder="right"
+                  value={right}
+                  onChange={(e) => setCardValue(e)}
+                />
               ) : null}
             </InputContainer>
             <ButtonLine>
