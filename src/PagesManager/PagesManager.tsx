@@ -44,6 +44,11 @@ const InnerScrollContainer = styled.div<{ multiplier: number }>`
 const TwoPageWrapper = styled.div`
   display: inline-flex;
   flex-direction: column;
+  @supports (-moz-appearance: none) {
+    @media print {
+      display: block;
+    }
+  }
 `;
 
 const PageWrapper = styled.div`

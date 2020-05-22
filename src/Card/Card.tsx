@@ -40,9 +40,9 @@ const CardContainer = styled.div<CardContainerProps>`
     border-color: ${colors.gold};
     z-index: 1;
     @media print {
+      border-color: black;
       transform: none;
       z-index: 0;
-      margin: 0;
     };
   `
       : ""}
