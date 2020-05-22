@@ -22,7 +22,8 @@ export const exportCSV = (cards: CardType[]) => {
 
 export const importCSV = (csvContent: string) => {
   const csvRows = csvContent.split("\n");
-  const cards = csvRows.slice(1).map((row) => {
+  const nonEmptyRows = csvRows.slice(1).filter((row) => row);
+  const cards = nonEmptyRows.map((row) => {
     const columns = row.split(";");
     const card = {
       type: columns[0],
