@@ -36,6 +36,7 @@ const InnerScrollContainer = styled.div<{ multiplier: number }>`
   transform-origin: top center;
   ${({ multiplier }) => `transform: scale(${multiplier});`}
   @media print {
+    display: block;
     transform: none;
   }
 `;

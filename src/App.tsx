@@ -32,7 +32,7 @@ const TabletDesktopWrapper = styled.div`
     display: none;
   }
   @media print {
-    display: flex;
+    display: block;
   }
 `;
 
