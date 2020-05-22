@@ -27,21 +27,22 @@ const CardContainer = styled.div<CardContainerProps>`
   width: 100%;
   padding-top: 100%;
   border: 1px solid black;
-  margin: -1px;
+  box-sizing: border-box;
   background: white;
   color: black;
   position: relative;
+  transition: all 100ms;
   ${({ color }) => (color ? `color: ${color};` : "")}
   ${({ selected }) =>
     selected
       ? `
-    border: 3px solid ${colors.gold};
-    margin: -3px;
+    transform: scale(1.1);
+    border-color: ${colors.gold};
     z-index: 1;
     @media print {
+      transform: none;
       z-index: 0;
-      border: 1px solid black;
-      margin: -1px;
+      margin: 0;
     };
   `
       : ""}
