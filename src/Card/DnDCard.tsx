@@ -95,14 +95,16 @@ export const DnDCard = ({ moveCard, cardIndex, ...props }: DnDCardProps) => {
       isOverRight: !!mon.isOver(),
     }),
   });
+  // The cards on the back side are displayed in the reverse order
+  const isBack = props.back;
   return (
     <DragArea ref={drag}>
-      <LeftDropArea ref={dropLeft} />
-      <RightDropArea ref={dropRight} />
+      <LeftDropArea ref={isBack ? dropRight : dropLeft} />
+      <RightDropArea ref={isBack ? dropLeft : dropRight} />
       <MovableCard
         isDragging={isDragging}
-        moveLeft={isOverLeft}
-        moveRight={isOverRight}
+        moveLeft={isBack ? isOverRight : isOverLeft}
+        moveRight={isBack ? isOverLeft : isOverRight}
       >
         <Card {...props} />
       </MovableCard>
