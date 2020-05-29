@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
+import { MoveCard } from "../App";
 import { Page } from "../Page/Page";
 import { CardType } from "../Card/Card";
 import { DisplayOptions } from "../App";
@@ -12,7 +13,7 @@ type PagesManagerProps = {
   setActiveCardIdx: (index: number) => void;
   displayOptions: DisplayOptions;
   activeCardIdx: number;
-  moveCard: (originalIdx: number, newIdx: number) => void;
+  moveCard: MoveCard;
 };
 
 const PageScrollContainer = styled.div`

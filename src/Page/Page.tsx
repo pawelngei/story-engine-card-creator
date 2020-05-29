@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { MoveCard } from "../App";
 import { DnDCard } from "../Card/DnDCard";
 import { CardType } from "../Card/Card";
 
@@ -10,7 +11,7 @@ type PageProps = {
   activeCardIdx: number;
   backs?: boolean;
   quality: string;
-  moveCard: (originalIdx: number, newIdx: number) => void;
+  moveCard: MoveCard;
 };
 
 const PaperContainer = styled.div`

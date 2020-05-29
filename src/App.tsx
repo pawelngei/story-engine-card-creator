@@ -21,6 +21,12 @@ export type DisplayOptions = {
   backQuality: Quality;
 };
 
+export type MoveCard = (
+  originalIdx: number,
+  newIdx: number,
+  toTheRight?: boolean
+) => void;
+
 const AppContainer = styled.div`
   display: block;
 `;
@@ -87,19 +93,24 @@ const App = () => {
     const newIndex = activeCardIdx === 0 ? 0 : activeCardIdx - 1;
     setActiveCardIdx(newIndex);
   };
-  const moveCard = (originalIdx: number, newIdx: number) => {
+  const moveCard: MoveCard = (originalIdx, newIdx, toTheRight) => {
+    // TODO: add top/bottom screen hover
+    const targetIdx = toTheRight ? newIdx + 1 : newIdx;
     const extraCards = [
-      ...cards.slice(0, newIdx),
+      ...cards.slice(0, targetIdx),
       cards[originalIdx],
-      ...cards.slice(newIdx),
+      ...cards.slice(targetIdx),
     ];
-    const removeIdx = originalIdx < newIdx ? originalIdx : originalIdx + 1;
+    const originalBelowTarget = originalIdx < targetIdx;
+    const removeIdx = originalBelowTarget ? originalIdx : originalIdx + 1;
     const updatedCards = [
       ...extraCards.slice(0, removeIdx),
       ...extraCards.slice(removeIdx + 1),
     ];
     setAndSaveCards(updatedCards);
-    const newActiveIdx = newIdx < cards.length - 1 ? newIdx : newIdx - 1;
+    const newActiveIdx = originalBelowTarget ? targetIdx - 1 : targetIdx;
+    console.log(originalIdx, newIdx, targetIdx);
+    console.log(newActiveIdx);
     setActiveCardIdx(newActiveIdx);
   };
   const exportCards = () => {

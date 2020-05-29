@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { useDrag, useDrop } from "react-dnd";
+import { MoveCard } from "../App";
 import { Card, CardProps } from "./Card";
 
 type DnDCardProps = CardProps & {
-  moveCard: (originalIdx: number, newIdx: number) => void;
   cardIndex: number;
+  moveCard: MoveCard;
 };
 
 type DropProps = {
@@ -89,7 +90,7 @@ export const DnDCard = ({ moveCard, cardIndex, ...props }: DnDCardProps) => {
   const [{ isOverRight }, dropRight] = useDrop({
     accept: DraggableItemTypes.CARD,
     drop: ({ originalIdx }: DropProps) => {
-      moveCard(originalIdx, cardIndex + 1);
+      moveCard(originalIdx, cardIndex, true);
     },
     collect: (mon) => ({
       isOverRight: !!mon.isOver(),
