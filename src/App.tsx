@@ -109,8 +109,6 @@ const App = () => {
     ];
     setAndSaveCards(updatedCards);
     const newActiveIdx = originalBelowTarget ? targetIdx - 1 : targetIdx;
-    console.log(originalIdx, newIdx, targetIdx);
-    console.log(newActiveIdx);
     setActiveCardIdx(newActiveIdx);
   };
   const exportCards = () => {
