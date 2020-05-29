@@ -1,5 +1,7 @@
 import "@openfonts/josefin-sans_all";
 import React, { useState } from "react";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 import { CardType } from "./Card/Card";
 import { PagesManager } from "./PagesManager/PagesManager";
 import { LeftMenu } from "./LeftMenu/LeftMenu";
@@ -85,6 +87,20 @@ const App = () => {
     const newIndex = activeCardIdx === 0 ? 0 : activeCardIdx - 1;
     setActiveCardIdx(newIndex);
   };
+  const moveCard = (originalIdx: number, newIdx: number) => {
+    const originalCard = cards[originalIdx];
+    const cardsWithOriginalRemoved = [
+      ...cards.slice(0, activeCardIdx),
+      ...cards.slice(activeCardIdx + 1),
+    ];
+    const updatedCards = [
+      ...cardsWithOriginalRemoved.slice(0, newIdx),
+      originalCard,
+      ...cardsWithOriginalRemoved.slice(newIdx),
+    ];
+    setAndSaveCards(updatedCards);
+    setActiveCardIdx(newIdx);
+  };
   const exportCards = () => {
     const element = document.createElement("a");
     const csvContent = exportCSV(cards);
@@ -114,28 +130,31 @@ const App = () => {
   };
   const card = cards[activeCardIdx];
   return (
-    <AppContainer>
-      <MobilePlaceholder />
-      <TabletDesktopWrapper>
-        <LeftMenu
-          card={card}
-          setCard={setCard}
-          createNewCard={createNewCard}
-          deleteCard={deleteCard}
-          exportCards={exportCards}
-          importCards={importCards}
-          clearCards={clearCards}
-          displayOptions={displayOptions}
-          setDisplayOptions={setAndSaveOptions}
-        />
-        <PagesManager
-          cards={cards}
-          setActiveCardIdx={setActiveCardIdx}
-          displayOptions={displayOptions}
-          activeCardIdx={activeCardIdx}
-        />
-      </TabletDesktopWrapper>
-    </AppContainer>
+    <DndProvider backend={HTML5Backend}>
+      <AppContainer>
+        <MobilePlaceholder />
+        <TabletDesktopWrapper>
+          <LeftMenu
+            card={card}
+            setCard={setCard}
+            createNewCard={createNewCard}
+            deleteCard={deleteCard}
+            exportCards={exportCards}
+            importCards={importCards}
+            clearCards={clearCards}
+            displayOptions={displayOptions}
+            setDisplayOptions={setAndSaveOptions}
+          />
+          <PagesManager
+            cards={cards}
+            setActiveCardIdx={setActiveCardIdx}
+            displayOptions={displayOptions}
+            activeCardIdx={activeCardIdx}
+            moveCard={moveCard}
+          />
+        </TabletDesktopWrapper>
+      </AppContainer>
+    </DndProvider>
   );
 };
 

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Card, CardType } from "../Card/Card";
+import { DnDCard } from "../Card/DnDCard";
+import { CardType } from "../Card/Card";
 
 type PageProps = {
   cards: CardType[];
@@ -9,6 +10,7 @@ type PageProps = {
   activeCardIdx: number;
   backs?: boolean;
   quality: string;
+  moveCard: (originalIdx: number, newIdx: number) => void;
 };
 
 const PaperContainer = styled.div`
@@ -54,6 +56,7 @@ export const Page = ({
   offsetIndex = 0,
   activeCardIdx,
   quality,
+  moveCard,
   backs,
 }: PageProps) => {
   const displayedCards = backs ? cards.map((c) => makeBack(c, "")) : cards;
@@ -65,10 +68,12 @@ export const Page = ({
             key={`cardwrapper-${index}`}
             onClick={() => setActiveCard(offsetIndex + index)}
           >
-            <Card
+            <DnDCard
               quality={quality}
               back={!!backs}
               selected={activeCardIdx === index + offsetIndex}
+              moveCard={moveCard}
+              cardIndex={index + offsetIndex}
               {...card}
             />
           </CardWrapper>

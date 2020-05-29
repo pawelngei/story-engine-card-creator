@@ -12,7 +12,7 @@ export type CardType = {
   type: string;
 };
 
-type CardProps = CardType & {
+export type CardProps = CardType & {
   back: boolean;
   quality: string;
   selected: boolean;
