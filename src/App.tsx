@@ -88,18 +88,19 @@ const App = () => {
     setActiveCardIdx(newIndex);
   };
   const moveCard = (originalIdx: number, newIdx: number) => {
-    const originalCard = cards[originalIdx];
-    const cardsWithOriginalRemoved = [
-      ...cards.slice(0, activeCardIdx),
-      ...cards.slice(activeCardIdx + 1),
+    const extraCards = [
+      ...cards.slice(0, newIdx),
+      cards[originalIdx],
+      ...cards.slice(newIdx),
     ];
+    const removeIdx = originalIdx < newIdx ? originalIdx : originalIdx + 1;
     const updatedCards = [
-      ...cardsWithOriginalRemoved.slice(0, newIdx),
-      originalCard,
-      ...cardsWithOriginalRemoved.slice(newIdx),
+      ...extraCards.slice(0, removeIdx),
+      ...extraCards.slice(removeIdx + 1),
     ];
     setAndSaveCards(updatedCards);
-    setActiveCardIdx(newIdx);
+    const newActiveIdx = newIdx < cards.length - 1 ? newIdx : newIdx - 1;
+    setActiveCardIdx(newActiveIdx);
   };
   const exportCards = () => {
     const element = document.createElement("a");
