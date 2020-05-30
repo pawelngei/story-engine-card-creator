@@ -542,7 +542,7 @@ export const LeftMenu = ({
             <EmTextContainer>
               This webapp may not be used for commercial purposes.
             </EmTextContainer>
-            <EmTextContainer>Version 1.4.0</EmTextContainer>
+            <EmTextContainer>Version 1.4.1</EmTextContainer>
           </SectionContainer>
         </InnerContainer>
       </ThemeProvider>

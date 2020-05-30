@@ -9,7 +9,7 @@ type DnDCardProps = CardProps & {
   moveCard: MoveCard;
 };
 
-type DropProps = {
+export type DropProps = {
   type: string;
   originalIdx: number;
 };

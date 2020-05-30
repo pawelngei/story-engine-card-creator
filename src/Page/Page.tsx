@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { useDrop } from "react-dnd";
 import { MoveCard } from "../App";
-import { DnDCard } from "../Card/DnDCard";
+import { DnDCard, DraggableItemTypes, DropProps } from "../Card/DnDCard";
 import { CardType } from "../Card/Card";
 
 type PageProps = {
@@ -61,9 +62,18 @@ export const Page = ({
   backs,
 }: PageProps) => {
   const displayedCards = backs ? cards.map((c) => makeBack(c, "")) : cards;
+  const [, dropPage] = useDrop({
+    accept: DraggableItemTypes.CARD,
+    drop: ({ originalIdx }: DropProps) => {
+      moveCard(originalIdx, offsetIndex + cards.length);
+    },
+    collect: (mon) => ({
+      isOverLeft: !!mon.isOver(),
+    }),
+  });
   return (
     <PaperContainer>
-      <PrintableArea reversed={!!backs}>
+      <PrintableArea reversed={!!backs} ref={dropPage}>
         {displayedCards.map((card, index) => (
           <CardWrapper
             key={`cardwrapper-${index}`}
