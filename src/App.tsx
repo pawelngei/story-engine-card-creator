@@ -94,6 +94,9 @@ const App = () => {
     setActiveCardIdx(newIndex);
   };
   const moveCard: MoveCard = (originalIdx, newIdx, toTheRight) => {
+    if (originalIdx === newIdx) {
+      return;
+    }
     const targetIdx = toTheRight ? newIdx + 1 : newIdx;
     const extraCards = [
       ...cards.slice(0, targetIdx),
