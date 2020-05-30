@@ -64,7 +64,10 @@ export const Page = ({
   const displayedCards = backs ? cards.map((c) => makeBack(c, "")) : cards;
   const [, dropPage] = useDrop({
     accept: DraggableItemTypes.CARD,
-    drop: ({ originalIdx }: DropProps) => {
+    drop: ({ originalIdx }: DropProps, monitor) => {
+      if (monitor.didDrop()) {
+        return;
+      }
       moveCard(originalIdx, offsetIndex + cards.length);
     },
     collect: (mon) => ({

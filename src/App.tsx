@@ -94,7 +94,6 @@ const App = () => {
     setActiveCardIdx(newIndex);
   };
   const moveCard: MoveCard = (originalIdx, newIdx, toTheRight) => {
-    // TODO: add top/bottom screen hover
     const targetIdx = toTheRight ? newIdx + 1 : newIdx;
     const extraCards = [
       ...cards.slice(0, targetIdx),

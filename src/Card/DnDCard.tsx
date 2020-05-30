@@ -41,7 +41,7 @@ const MovableCard = styled.div<MovableCardProps>`
   ${({ isDragging }) =>
     isDragging
       ? `
-    display: none;
+    transform: none;
   `
       : ``}
   @media print {
